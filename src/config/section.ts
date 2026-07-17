@@ -7,4 +7,5 @@ export const sectionConfig = {
   showReviews: false,
   showCTABanner: true,
   showContact: true,
+  showFaq: true,
 };

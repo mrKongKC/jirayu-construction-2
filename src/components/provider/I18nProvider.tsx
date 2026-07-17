@@ -63,8 +63,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!mounted) return;
     document.documentElement.lang = locale;
-    document.title = t.siteTitle;
-  }, [locale, t.siteTitle, mounted]);
+  }, [locale, mounted]);
 
   return (
     <I18nContext.Provider value={{ locale, t, setLocale, toggleLocale }}>

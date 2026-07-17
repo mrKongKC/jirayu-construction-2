@@ -3,6 +3,10 @@
 import { Box } from "@mui/material";
 import { useEffect, useRef } from "react";
 import { useI18n } from "@/components/provider/I18nProvider";
+import OptimizedImage from "@/components/common/OptimizedImage";
+
+const HERO_IMAGE =
+  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&auto=format&fit=crop&q=80";
 
 export default function ParallaxImage() {
   const { t } = useI18n();
@@ -29,15 +33,12 @@ export default function ParallaxImage() {
         willChange: "transform",
       }}
     >
-      <Box
-        component="img"
-        src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&auto=format&fit=crop&q=80"
+      <OptimizedImage
+        src={HERO_IMAGE}
         alt={t.common.alt.hero}
-        sx={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-        }}
+        fill
+        priority
+        sizes="100vw"
       />
     </Box>
   );

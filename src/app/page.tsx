@@ -7,8 +7,10 @@ import ProcessSection from '@/components/sections/process/ProcessSection';
 import ReviewsSection from '@/components/sections/ReviewsSection';
 import CTABannerSection from '@/components/sections/CTABannerSection';
 import ContactSection from '@/components/sections/contact/ContactSection';
+import FaqSection from '@/components/sections/FaqSection';
 import Footer from '@/components/layouts/footer/Footer';
 import FloatingActionsSection from '@/components/sections/FloatingActionsSection';
+import HomeDocumentMeta from '@/components/provider/HomeDocumentMeta';
 import { sectionConfig as config } from "@/config/section";
 
 const SECTIONS = [
@@ -20,11 +22,13 @@ const SECTIONS = [
   { id: 'reviews', component: ReviewsSection, show: config.showReviews },
   { id: 'cta', component: CTABannerSection, show: config.showCTABanner },
   { id: 'contact', component: ContactSection, show: config.showContact },
+  { id: 'faq', component: FaqSection, show: config.showFaq },
 ];
 
 export default function HomePage() {
   return (
     <>
+      <HomeDocumentMeta />
       <Navbar />
       <main>
        {SECTIONS.map(({ id, component: Component, show }) => 

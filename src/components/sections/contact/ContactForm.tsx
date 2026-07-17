@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Grid, MenuItem } from "@mui/material";
+import { Alert, Grid, MenuItem } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useI18n } from "@/components/provider/I18nProvider";
 import FormField from "@/components/common/FormField";
 import PrimaryButton from "@/components/common/PrimaryButton";
+import { buildContactMailto } from "@/config/contact";
 
 export default function ContactForm() {
   const { t } = useI18n();
@@ -18,16 +19,38 @@ export default function ContactForm() {
     service: "",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
 
   const onSubmit = () => {
-    console.log(form);
+    if (!form.name.trim() || !form.phone.trim() || !form.service.trim()) {
+      setStatus("error");
+      setErrorMsg(c.errorMsg);
+      return;
+    }
+
+    setErrorMsg("");
+    window.location.href = buildContactMailto(form);
+    setStatus("success");
+    setForm({ name: "", phone: "", email: "", service: "", message: "" });
   };
 
   return (
     <Grid container spacing={2.5}>
+      {status === "success" && (
+        <Grid size={{ xs: 12 }}>
+          <Alert severity="success">{c.successMsg}</Alert>
+        </Grid>
+      )}
+      {status === "error" && errorMsg && (
+        <Grid size={{ xs: 12 }}>
+          <Alert severity="error">{errorMsg}</Alert>
+        </Grid>
+      )}
+
       <Grid size={{ xs: 12, sm: 6 }}>
         <FormField
           label={c.fields.name}

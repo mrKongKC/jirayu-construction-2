@@ -1,10 +1,12 @@
 "use client";
+import Link from "next/link";
 import { Box, Container, Typography, Grid, Divider, IconButton, alpha } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useI18n } from "@/components/provider/I18nProvider";
+import { contactLinks } from "@/config/contact";
 import { brand, gradientPrimaryBg, sectionSpacing, shadowPrimaryLight, textEyebrow, textLabel, textWhiteMedium, textWhiteSubtle } from "@/theme/utils";
 import { getFooterColumns, getFilteredLinks } from "./utils";
 
@@ -29,8 +31,8 @@ export default function Footer() {
             
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, mb: 4 }}>
               {[
-                { icon: PhoneIcon, text: t.contact.info.phone.value, href: `tel:${t.contact.info.phone.value}` },
-                { icon: EmailIcon, text: t.contact.info.email.value, href: `mailto:${t.contact.info.email.value}` },
+                { icon: PhoneIcon, text: t.contact.info.phone.value, href: `tel:${contactLinks.phoneTel}` },
+                { icon: EmailIcon, text: t.contact.info.email.value, href: `mailto:${contactLinks.email}` },
                 { icon: LocationOnIcon, text: t.contact.info.location.value, href: "#" }
               ].map((item) => (
                 <Box key={item.text} component="a" href={item.href} sx={(theme) => ({ display: "flex", alignItems: "center", gap: 1.5, textDecoration: "none", color: textWhiteMedium(theme), "&:hover": { color: theme.palette.primary.light }, transition: "all 0.2s" })}>
@@ -42,8 +44,9 @@ export default function Footer() {
 
             <IconButton
               component="a"
-              href="https://www.facebook.com/..."
+              href={contactLinks.facebookUrl}
               target="_blank"
+              rel="noopener noreferrer"
               size="small"
               sx={(theme) => ({
                 border: `1px solid ${theme.palette.divider}`,
@@ -86,6 +89,25 @@ export default function Footer() {
         </Grid>
 
         <Divider sx={(theme) => ({ borderColor: textWhiteSubtle(theme), mb: 4 })} />
+
+        <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, justifyContent: "center", alignItems: "center", gap: 2, mb: 2 }}>
+          <Typography
+            component={Link}
+            href="/privacy"
+            sx={(theme) => ({ fontSize: "0.72rem", color: textWhiteSubtle(theme), textDecoration: "none", "&:hover": { color: theme.palette.primary.light } })}
+          >
+            {f.privacy}
+          </Typography>
+          <Typography sx={(theme) => ({ fontSize: "0.72rem", color: textWhiteSubtle(theme), display: { xs: "none", sm: "block" } })}>·</Typography>
+          <Typography
+            component={Link}
+            href="/terms"
+            sx={(theme) => ({ fontSize: "0.72rem", color: textWhiteSubtle(theme), textDecoration: "none", "&:hover": { color: theme.palette.primary.light } })}
+          >
+            {f.terms}
+          </Typography>
+        </Box>
+
         <Typography id="bottom-footer-legal-copyright" sx={(theme) => ({ fontSize: "0.72rem", color: textWhiteSubtle(theme), textAlign: "center" })}>{f.copyright}</Typography>
       </Container>
     </Box>

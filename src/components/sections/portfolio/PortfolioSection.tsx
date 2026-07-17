@@ -8,6 +8,7 @@ import { useI18n } from "@/components/provider/I18nProvider";
 
 import Section from "@/components/layouts/Section";
 import SectionHeader from "@/components/common/SectionHeader";
+import OptimizedImage from "@/components/common/OptimizedImage";
 
 import { textSecondarySoft, gridSpacing } from "@/theme/utils";
 
@@ -102,20 +103,19 @@ export default function PortfolioSection() {
                 },
               }}
             >
-              <Box
-                component="img"
-                src={p.img}
-                alt={p.title}
-                loading="lazy"
-                className="p-img"
-                sx={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  transition: "transform 0.6s ease",
-                  display: "block",
-                }}
-              />
+              <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
+                <OptimizedImage
+                  src={p.img}
+                  alt={p.title}
+                  fill
+                  sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
+                  className="p-img"
+                  sx={{
+                    transition: "transform 0.6s ease",
+                    display: "block",
+                  }}
+                />
+              </Box>
 
               <Box
                 className="p-overlay"

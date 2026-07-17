@@ -1,8 +1,7 @@
-export const dynamic = 'force-static';
-// export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 import { MetadataRoute } from "next";
-import { siteConfig } from "@/config/seo"; 
+import { siteConfig } from "@/config/seo";
 
 type ChangeFrequency =
   | "always"
@@ -24,28 +23,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
 
   const routes: RouteDefinition[] = [
-    {
-      path: "", 
-      changeFrequency: "weekly", 
-      priority: 1.0, 
-    },
-    /* 
-    {
-      path: "/portfolio",
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    */
+    { path: "", changeFrequency: "weekly", priority: 1.0 },
+    { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const sitemapData: MetadataRoute.Sitemap = routes.map((route) => {
-    return {
-      url: `${baseUrl}${route.path}`,
-      lastModified: new Date(), 
-      changeFrequency: route.changeFrequency,
-      priority: route.priority,
-    };
-  });
-
-  return sitemapData;
+  return routes.map((route) => ({
+    url: `${baseUrl}${route.path}`,
+    lastModified: new Date(),
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
+  }));
 }

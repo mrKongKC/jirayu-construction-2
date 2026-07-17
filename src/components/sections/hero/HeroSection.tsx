@@ -59,9 +59,9 @@ export default function HeroSection() {
 
           {/* Title */}
           <Box sx={fadeUp(0.3)}>
-            <HeroTitle>{t.hero.line1}</HeroTitle>
-            <HeroTitle gradient>{t.hero.line2}</HeroTitle>
-            <HeroTitle>{t.hero.line3}</HeroTitle>
+            <HeroTitle component="h1">{t.hero.line1}</HeroTitle>
+            <HeroTitle gradient component="span">{t.hero.line2}</HeroTitle>
+            <HeroTitle component="span">{t.hero.line3}</HeroTitle>
           </Box>
 
           {/* Subtitle */}

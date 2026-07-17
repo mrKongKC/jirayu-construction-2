@@ -7,6 +7,7 @@ import { useI18n } from "@/components/provider/I18nProvider";
 import Section from "@/components/layouts/Section";
 import SectionHeader from "@/components/common/SectionHeader";
 import IconBox from "@/components/common/IconBox";
+import OptimizedImage from "@/components/common/OptimizedImage";
 
 import {
   textSecondarySoft,
@@ -68,17 +69,14 @@ export default function ServicesSection() {
                   transition: "all 0.3s ease",
                 }}
               >
-                <Box
-                  component="img"
-                  src={IMAGES[i]}
-                  alt={item.title}
-                  loading="lazy"
-                  sx={{
-                    width: "100%",
-                    height: 180,
-                    objectFit: "cover",
-                  }}
-                />
+                <Box sx={{ position: "relative", width: "100%", height: 180 }}>
+                  <OptimizedImage
+                    src={IMAGES[i]}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 33vw"
+                  />
+                </Box>
 
                 <CardContent sx={{ p: 3 }}>
                   <Box sx={{ display: "flex", gap: 2, mb: 2 }}>

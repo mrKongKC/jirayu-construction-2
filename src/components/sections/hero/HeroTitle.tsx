@@ -1,15 +1,17 @@
 import { Typography } from '@mui/material';
 import { gradientPrimaryTextStrong } from '@/theme/utils';
-import { ReactNode } from 'react';
+import { ElementType, ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
   gradient?: boolean;
+  component?: ElementType;
 };
 
-export default function HeroTitle({ children, gradient }: Props) {
+export default function HeroTitle({ children, gradient, component = 'p' }: Props) {
   return (
     <Typography
+      component={component}
       sx={(theme) => ({
         fontSize: {
           xs: '2.8rem',

@@ -3,13 +3,14 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import ThemeRegistry from "@/components/layouts/ThemeRegistry";
 import { siteConfig } from "@/config/seo";
+import { buildJsonLdGraph } from "@/lib/seo-jsonld";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const { name, url, ogImage, seo, business } = siteConfig;
+const { name, url, ogImage, seo } = siteConfig;
 const { title, titleTemplate, description, keywords } = seo;
 
 export const metadata: Metadata = {
@@ -18,15 +19,16 @@ export const metadata: Metadata = {
     default: title,
     template: titleTemplate,
   },
-  description, 
+  description,
   keywords,
   authors: [{ name }],
   creator: name,
   publisher: name,
+  category: "construction",
   openGraph: {
     type: "website",
     locale: "th_TH",
-    alternateLocale: "en_US",
+    alternateLocale: ["en_US"],
     url,
     siteName: name,
     title,
@@ -58,6 +60,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: url,
+    languages: {
+      "th-TH": url,
+      "en-US": url,
+    },
   },
 };
 
@@ -66,46 +72,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  const { phone, address, geo, openingHours } = business;
-  const { locality, region, postalCode, country } = address;
-  const { latitude, longitude } = geo;
-  const { days, opens, closes } = openingHours;
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "GeneralContractor",
-    name, 
-    image: `${url}${ogImage}`,
-    description, 
-    url,
-    telephone: phone,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: locality,
-      addressRegion: region,
-      postalCode: postalCode,
-      addressCountry: country,
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude,
-      longitude,
-    },
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: days,
-      opens,
-      closes,
-    },
-    areaServed: {
-      "@type": "AdministrativeArea",
-      name: region,
-    },
-  };
+  const jsonLd = buildJsonLdGraph();
 
   return (
-   <html lang="th" suppressHydrationWarning className={geistSans.variable}>
+    <html lang="th" suppressHydrationWarning className={geistSans.variable}>
       <head>
         <script
           type="application/ld+json"

@@ -6,6 +6,7 @@ import { useI18n } from "@/components/provider/I18nProvider";
 import Section from "@/components/layouts/Section";
 import SectionHeader from "@/components/common/SectionHeader";
 import IconBox from "@/components/common/IconBox";
+import OptimizedImage from "@/components/common/OptimizedImage";
 
 import {
   borderPrimaryLight,
@@ -56,16 +57,14 @@ export default function WhyUsSection() {
                 },
               }}
             >
-              <Box
-                component="img"
-                src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&auto=format&fit=crop&q=80"
-                alt={t.common.alt.team}
-                sx={{
-                  width: "100%",
-                  height: 480,
-                  objectFit: "cover",
-                }}
-              />
+              <Box sx={{ position: "relative", width: "100%", height: 480 }}>
+                <OptimizedImage
+                  src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&auto=format&fit=crop&q=80"
+                  alt={t.common.alt.team}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 40vw"
+                />
+              </Box>
             </Box>
 
             {/* Badge */}

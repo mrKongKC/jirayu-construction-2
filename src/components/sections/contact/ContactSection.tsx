@@ -11,6 +11,7 @@ import ContactForm from "./ContactForm";
 
 import { textSecondarySoft, textBodySmall, gridSpacing } from "@/theme/utils";
 
+import { contactLinks } from "@/config/contact";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -21,7 +22,7 @@ export default function ContactSection() {
   const c = t.contact;
 
   const infoItems = [
-    { icon: PhoneIcon, ...c.info.phone, href: "tel:+6606XXXXXXXX" },
+    { icon: PhoneIcon, ...c.info.phone, href: `tel:${contactLinks.phoneTel}` },
     { icon: EmailIcon, ...c.info.email, href: `mailto:${c.info.email.value}` },
     {
       icon: LocationOnIcon,
@@ -31,7 +32,7 @@ export default function ContactSection() {
     {
       icon: FacebookIcon,
       ...c.info.facebook,
-      href: "https://www.facebook.com/profile.php?id=61556976380918",
+      href: contactLinks.facebookUrl,
     },
   ];
 

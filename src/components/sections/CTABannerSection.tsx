@@ -5,6 +5,8 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PhoneIcon from "@mui/icons-material/Phone";
 
 import { useI18n } from "@/components/provider/I18nProvider";
+import OptimizedImage from "@/components/common/OptimizedImage";
+import { contactLinks } from "@/config/contact";
 
 import {
   gradientPrimaryLine,
@@ -27,19 +29,15 @@ export default function CTABannerSection() {
       }}
     >
       {/* BG Image */}
-      <Box
-        component="img"
-        src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1800&auto=format&fit=crop&q=70"
-        alt=""
-        sx={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          objectPosition: "center 40%",
-        }}
-      />
+      <Box sx={{ position: "absolute", inset: 0 }}>
+        <OptimizedImage
+          src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1800&auto=format&fit=crop&q=70"
+          alt={t.cta.title}
+          fill
+          sizes="100vw"
+          sx={{ objectPosition: "center 40%" }}
+        />
+      </Box>
 
       {/* Overlay */}
       <Box
@@ -157,7 +155,7 @@ export default function CTABannerSection() {
                 size="large"
                 startIcon={<PhoneIcon />}
                 component="a"
-                href="tel:+6606XXXXXXXX"
+                href={`tel:${contactLinks.phoneTel}`}
                 sx={(theme) => ({
                   py: 1.8,
                   px: 3.5,

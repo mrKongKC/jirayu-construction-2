@@ -180,9 +180,11 @@
     "submitBtn": "Send Enquiry",
     "privacy": "Your information is kept confidential and never shared with third parties.",
     "successMsg": "Enquiry sent! Our team will contact you within 24 hours.",
+    "errorMsg": "Failed to send. Please try again or call us directly.",
+    "sending": "Sending...",
     "info": {
       "phone": { "label": "Phone", "value": "081-5956897" },
-      "email": { "label": "Email", "value": "xx@gmail.com" },
+      "email": { "label": "Email", "value": "pot@gmail.com" },
       "location": { "label": "Location", "value": "Nan Province, Thailand" },
       "facebook": { "label": "Facebook", "value": "Jirayu Construction" }
     }
@@ -208,5 +210,68 @@
     "facebook": "Message on Facebook",
     "scrollTop": "Back to Top"
   },
-  "switchLang": "TH"
+  "switchLang": "TH",
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Frequently",
+    "titleAccent": "Asked Questions",
+    "items": [
+      {
+        "question": "How long does it take to build a home in Nan Province?",
+        "answer": "Timeline depends on size and complexity. A single-storey home typically takes 4–8 months; a two-storey home may take 8–14 months. We provide a clear schedule in the contract after site survey and design."
+      },
+      {
+        "question": "What is the starting price for home construction in Nan?",
+        "answer": "Pricing depends on area, materials, and design. We offer a free initial estimate after understanding your requirements and build site."
+      },
+      {
+        "question": "Do you offer architectural design and interior services?",
+        "answer": "Yes — from architectural design and 3D visuals to construction and interior finishing. You can choose full-service or individual packages."
+      },
+      {
+        "question": "Which areas do you serve?",
+        "answer": "We serve all of Nan Province including Mueang Nan, Pua, Tha Wang Pha, Ban Luang, Wiang Sa, and nearby areas."
+      }
+    ]
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "metaDescription": "Jirayu Construction privacy policy — how we collect, use, and protect personal data from contact forms.",
+      "updated": "Last updated: 2026",
+      "sections": [
+        {
+          "heading": "Information we collect",
+          "body": "We collect information you submit via the contact form — name, phone, email, service interest, and message — to respond and provide our services."
+        },
+        {
+          "heading": "How we use your data",
+          "body": "Your data is used only to contact you, prepare quotes, and deliver related services. We do not sell or share your data with third parties without consent."
+        },
+        {
+          "heading": "Contact",
+          "body": "For questions about this policy, please contact us via the website contact page."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "metaDescription": "Jirayu Construction terms of use — website usage conditions and limitations of liability.",
+      "updated": "Last updated: 2026",
+      "sections": [
+        {
+          "heading": "Use of this website",
+          "body": "Content on this website is for informational purposes only. Do not copy or use commercially without permission."
+        },
+        {
+          "heading": "Information and images",
+          "body": "Portfolio images and project information are for presentation. Final details are confirmed in contracts and quotations."
+        },
+        {
+          "heading": "Limitation of liability",
+          "body": "We do not guarantee all website information is complete or current. Binding service terms are specified in signed contracts."
+        }
+      ]
+    }
+  }
 }

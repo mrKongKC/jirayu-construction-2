@@ -27,6 +27,7 @@ import {
   bgWhiteHover,
 } from "@/theme/utils";
 import { sectionConfig as config } from "@/config/section";
+import { contactLinks } from "@/config/contact";
 
 export default function NavbarContent() {
   const { t, toggleLocale } = useI18n();
@@ -225,7 +226,7 @@ export default function NavbarContent() {
               variant="contained"
               size="small"
               startIcon={<PhoneIcon sx={{ fontSize: "0.9rem !important" }} />}
-              href="tel:+66..."
+              href={`tel:${contactLinks.phoneTel}`}
               sx={{
                 display: { xs: "none", md: "flex" },
                 fontSize: "0.78rem",
@@ -314,7 +315,7 @@ export default function NavbarContent() {
           <Box
             sx={{ mt: 4, display: "flex", flexDirection: "column", gap: 1.5 }}
           >
-            <Button variant="contained" fullWidth href="tel:+66...">
+            <Button variant="contained" fullWidth href={`tel:${contactLinks.phoneTel}`}>
               {t.nav.cta}
             </Button>
             <Button

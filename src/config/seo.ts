@@ -1,4 +1,6 @@
-import th from '@/locales/th.json';
+import th from "@/locales/th.json";
+import en from "@/locales/en.json";
+import { contactLinks } from "@/config/contact";
 
 function getSiteUrl(): string {
   if (process.env.NEXT_PUBLIC_SITE_URL) {
@@ -17,6 +19,7 @@ export const siteConfig = {
   name: th.title,
   url: getSiteUrl(),
   ogImage: "/og-img.png",
+  contact: contactLinks,
 
   seo: {
     title: th.siteTitle,
@@ -27,7 +30,7 @@ export const siteConfig = {
   },
 
   business: {
-    phone: "081-5956897",
+    phone: contactLinks.phone,
     address: {
       locality: "เมืองน่าน",
       region: "น่าน",
@@ -42,6 +45,17 @@ export const siteConfig = {
       days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       opens: "08:00",
       closes: "17:00",
+    },
+  },
+
+  locales: {
+    th: {
+      title: th.siteTitle,
+      description: th.siteDesc,
+    },
+    en: {
+      title: en.siteTitle,
+      description: en.siteDesc,
     },
   },
 };

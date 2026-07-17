@@ -15,7 +15,8 @@ import {
 import PhoneIcon from "@mui/icons-material/Phone";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import { useAppAction } from "../provider/AppActionProvider";
+import { contactLinks } from "@/config/contact";
+import { useAppAction } from "@/components/provider/AppActionProvider";
 
 export default function FloatingActionsSection() {
   const { t } = useI18n();
@@ -84,7 +85,7 @@ export default function FloatingActionsSection() {
           <Fab
             size="small"
             component="a"
-            href="https://www.facebook.com/profile.php?id=61556976380918"
+            href={contactLinks.facebookUrl}
             target="_blank"
             rel="noopener noreferrer"
             sx={{
@@ -106,7 +107,7 @@ export default function FloatingActionsSection() {
           <Fab
             size="small"
             component="a"
-            href="tel:+6606XXXXXXXX"
+            href={`tel:${contactLinks.phoneTel}`}
             sx={(theme) => ({
               ...fabBase,
               background: gradientPrimaryBg(theme),

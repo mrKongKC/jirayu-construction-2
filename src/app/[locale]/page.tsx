@@ -10,7 +10,6 @@ import ContactSection from '@/components/sections/contact/ContactSection';
 import FaqSection from '@/components/sections/FaqSection';
 import Footer from '@/components/layouts/footer/Footer';
 import FloatingActionsSection from '@/components/sections/FloatingActionsSection';
-import HomeDocumentMeta from '@/components/provider/HomeDocumentMeta';
 import { sectionConfig as config } from "@/config/section";
 
 const SECTIONS = [
@@ -28,7 +27,6 @@ const SECTIONS = [
 export default function HomePage() {
   return (
     <>
-      <HomeDocumentMeta />
       <Navbar />
       <main>
        {SECTIONS.map(({ id, component: Component, show }) => 

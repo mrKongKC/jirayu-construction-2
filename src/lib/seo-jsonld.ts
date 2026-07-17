@@ -8,7 +8,7 @@ const localeData = { th, en };
 export function buildJsonLdGraph(locale: Locale = "th") {
   const t = localeData[locale];
   const localeSeo = siteConfig.locales[locale];
-  const { name, url, ogImage, business } = siteConfig;
+  const { url, ogImage, business } = siteConfig;
   const { phone, address, geo, openingHours } = business;
   const { locality, region, postalCode, country } = address;
   const { latitude, longitude } = geo;
@@ -17,7 +17,7 @@ export function buildJsonLdGraph(locale: Locale = "th") {
   const localBusiness = {
     "@type": "GeneralContractor",
     "@id": `${url}/#business`,
-    name,
+    name: localeSeo.name,
     image: `${url}${ogImage}`,
     description: localeSeo.description,
     url,

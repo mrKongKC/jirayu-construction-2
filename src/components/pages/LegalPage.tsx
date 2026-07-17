@@ -5,7 +5,6 @@ import { Box, Container, Typography, Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useI18n } from "@/components/provider/I18nProvider";
 import { useLocalePath } from "@/hooks/useLocalePath";
-import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { textSecondarySoft } from "@/theme/utils";
 
 interface LegalPageProps {
@@ -16,11 +15,6 @@ export default function LegalPage({ type }: LegalPageProps) {
   const { t } = useI18n();
   const { toLocalePath } = useLocalePath();
   const content = t.legal[type];
-
-  useDocumentMeta(
-    `${content.title} | ${t.title}`,
-    content.metaDescription,
-  );
 
   return (
     <Box component="main" sx={{ py: { xs: 10, md: 12 }, minHeight: "60vh", bgcolor: "background.default" }}>

@@ -1,18 +1,30 @@
-"use client";
+import type { Metadata } from "next";
+import { siteConfig } from "@/config/seo";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { defaultLocale, LOCALE_STORAGE_KEY } from "@/lib/i18n";
+const redirectScript = `(function(){try{var l=localStorage.getItem("locale");location.replace("/"+(l==="en"||l==="th"?l:"th"));}catch(e){location.replace("/th");}})();`;
 
-export default function RootRedirect() {
-  const router = useRouter();
+export const metadata: Metadata = {
+  robots: { index: false, follow: true },
+  alternates: {
+    canonical: `${siteConfig.url}/th`,
+    languages: {
+      "x-default": `${siteConfig.url}/th`,
+      "th-TH": `${siteConfig.url}/th`,
+      "en-US": `${siteConfig.url}/en`,
+    },
+  },
+};
 
-  useEffect(() => {
-    const stored = localStorage.getItem(LOCALE_STORAGE_KEY);
-    const locale =
-      stored === "en" || stored === "th" ? stored : defaultLocale;
-    router.replace(`/${locale}`);
-  }, [router]);
-
-  return null;
+export default function RootRedirectPage() {
+  return (
+    <>
+      <script dangerouslySetInnerHTML={{ __html: redirectScript }} />
+      <noscript>
+        <meta httpEquiv="refresh" content="0;url=/th" />
+      </noscript>
+      <p style={{ padding: "2rem", fontFamily: "sans-serif" }}>
+        <a href="/th">ไปยังหน้าแรก / Go to homepage</a>
+      </p>
+    </>
+  );
 }

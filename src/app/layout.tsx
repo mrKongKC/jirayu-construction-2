@@ -60,6 +60,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${url}/th`,
     languages: {
+      "x-default": `${url}/th`,
       "th-TH": `${url}/th`,
       "en-US": `${url}/en`,
     },

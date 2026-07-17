@@ -26,7 +26,7 @@ export const siteConfig = {
     titleTemplate: `%s | ${th.title}`,
     description: th.siteDesc,
     keywords: th.keywords,
-    ogAlt: `${th.title} รับเหมาก่อสร้างจังหวัดน่าน`,
+    ogAlt: th.ogAlt,
   },
 
   business: {
@@ -50,12 +50,16 @@ export const siteConfig = {
 
   locales: {
     th: {
+      name: th.title,
       title: th.siteTitle,
       description: th.siteDesc,
+      ogAlt: th.ogAlt,
     },
     en: {
+      name: en.title,
       title: en.siteTitle,
       description: en.siteDesc,
+      ogAlt: en.ogAlt,
     },
   },
 };

@@ -42,21 +42,3 @@ next-env.d.ts
 
 # todo
 *todo.txt
-
-# Firebase configuration and tokens
-.firebaserc
-firebase.json
-*.firebase.json
-
-# Firebase CLI logs
-firebase-debug.log
-ui-debug.log
-
-# Firebase local emulators cache and data
-.firebase/
-emulator-html/
-
-# Firebase functions artifacts
-functions/node_modules/
-functions/.env
-functions/lib/

@@ -1,8 +1,21 @@
 import th from '@/locales/th.json';
 
+function getSiteUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  return "http://localhost:3000";
+}
+
 export const siteConfig = {
   name: th.title,
-  url: "https://jirayu-754a8.web.app",
+  url: getSiteUrl(),
   ogImage: "/og-img.png",
 
   seo: {

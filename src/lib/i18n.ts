@@ -12,6 +12,10 @@ export const translations: Record<Locale, Translations> = { th, en };
 
 export const LOCALE_STORAGE_KEY = 'locale';
 
+export function isValidLocale(locale: string): locale is Locale {
+  return locales.includes(locale as Locale);
+}
+
 export function formatCopyright(template: string, year = new Date().getFullYear()) {
   return template.replace('{year}', String(year));
 }

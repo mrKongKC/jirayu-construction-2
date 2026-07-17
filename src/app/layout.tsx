@@ -3,7 +3,6 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import ThemeRegistry from "@/components/layouts/ThemeRegistry";
 import { siteConfig } from "@/config/seo";
-import { buildJsonLdGraph } from "@/lib/seo-jsonld";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,10 +58,10 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: url,
+    canonical: `${url}/th`,
     languages: {
-      "th-TH": url,
-      "en-US": url,
+      "th-TH": `${url}/th`,
+      "en-US": `${url}/en`,
     },
   },
 };
@@ -72,16 +71,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = buildJsonLdGraph();
-
   return (
     <html lang="th" suppressHydrationWarning className={geistSans.variable}>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
       <body>
         <ThemeRegistry>{children}</ThemeRegistry>
       </body>

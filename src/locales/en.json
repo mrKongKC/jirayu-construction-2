@@ -181,7 +181,6 @@
     "privacy": "Your information is kept confidential and never shared with third parties.",
     "successMsg": "Enquiry sent! Our team will contact you within 24 hours.",
     "errorMsg": "Failed to send. Please try again or call us directly.",
-    "sending": "Sending...",
     "info": {
       "phone": { "label": "Phone", "value": "081-5956897" },
       "email": { "label": "Email", "value": "pot@gmail.com" },

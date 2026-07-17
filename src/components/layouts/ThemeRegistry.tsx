@@ -7,6 +7,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import theme from "@/theme/theme";
 import { I18nProvider } from "@/components/provider/I18nProvider";
 import { AppActionProvider } from "@/components/provider/AppActionProvider";
+import JsonLdScript from "@/components/provider/JsonLdScript";
 
 export default function ThemeRegistry({
   children,
@@ -18,7 +19,10 @@ export default function ThemeRegistry({
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <AppActionProvider>
-          <I18nProvider>{children}</I18nProvider>
+          <I18nProvider>
+            <JsonLdScript />
+            {children}
+          </I18nProvider>
         </AppActionProvider>
       </ThemeProvider>
     </AppRouterCacheProvider>

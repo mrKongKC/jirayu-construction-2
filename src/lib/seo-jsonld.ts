@@ -1,8 +1,14 @@
 import th from "@/locales/th.json";
+import en from "@/locales/en.json";
 import { siteConfig } from "@/config/seo";
+import type { Locale } from "@/lib/i18n";
 
-export function buildJsonLdGraph() {
-  const { name, url, ogImage, seo, business } = siteConfig;
+const localeData = { th, en };
+
+export function buildJsonLdGraph(locale: Locale = "th") {
+  const t = localeData[locale];
+  const localeSeo = siteConfig.locales[locale];
+  const { name, url, ogImage, business } = siteConfig;
   const { phone, address, geo, openingHours } = business;
   const { locality, region, postalCode, country } = address;
   const { latitude, longitude } = geo;
@@ -13,7 +19,7 @@ export function buildJsonLdGraph() {
     "@id": `${url}/#business`,
     name,
     image: `${url}${ogImage}`,
-    description: seo.description,
+    description: localeSeo.description,
     url,
     telephone: phone,
     address: {
@@ -44,16 +50,16 @@ export function buildJsonLdGraph() {
     "@type": "WebSite",
     "@id": `${url}/#website`,
     url,
-    name: seo.title,
-    description: seo.description,
-    inLanguage: ["th-TH", "en-US"],
+    name: localeSeo.title,
+    description: localeSeo.description,
+    inLanguage: locale === "th" ? "th-TH" : "en-US",
     publisher: { "@id": `${url}/#business` },
   };
 
   const faqPage = {
     "@type": "FAQPage",
     "@id": `${url}/#faq`,
-    mainEntity: th.faq.items.map((item) => ({
+    mainEntity: t.faq.items.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {

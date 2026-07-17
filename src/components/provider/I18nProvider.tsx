@@ -8,13 +8,16 @@ import React, {
   useEffect,
   useMemo,
 } from 'react';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import {
   getTranslations,
   Locale,
   defaultLocale,
   LOCALE_STORAGE_KEY,
   Translations,
+  isValidLocale,
 } from '@/lib/i18n';
+import { switchLocalePath } from '@/lib/locale-path';
 
 interface I18nContextValue {
   locale: Locale;
@@ -37,26 +40,51 @@ function readStoredLocale(): Locale {
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
+  const params = useParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const paramLocale = params?.locale;
+  const urlLocale =
+    typeof paramLocale === 'string' && isValidLocale(paramLocale)
+      ? paramLocale
+      : null;
+
   const [locale, setLocaleState] = useState<Locale>(defaultLocale);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setLocaleState(readStoredLocale());
     setMounted(true);
   }, []);
 
-  const setLocale = useCallback((l: Locale) => {
-    setLocaleState(l);
-    localStorage.setItem(LOCALE_STORAGE_KEY, l);
-  }, []);
+  useEffect(() => {
+    if (urlLocale) {
+      setLocaleState(urlLocale);
+      localStorage.setItem(LOCALE_STORAGE_KEY, urlLocale);
+      return;
+    }
+    if (mounted) {
+      setLocaleState(readStoredLocale());
+    }
+  }, [urlLocale, mounted]);
+
+  const setLocale = useCallback(
+    (l: Locale) => {
+      localStorage.setItem(LOCALE_STORAGE_KEY, l);
+      const onLocaleRoute =
+        pathname.startsWith('/th') || pathname.startsWith('/en');
+      if (onLocaleRoute) {
+        router.push(switchLocalePath(pathname, l));
+      } else {
+        router.push(`/${l}`);
+      }
+    },
+    [pathname, router],
+  );
 
   const toggleLocale = useCallback(() => {
-    setLocaleState((prev) => {
-      const next = prev === 'th' ? 'en' : 'th';
-      localStorage.setItem(LOCALE_STORAGE_KEY, next);
-      return next;
-    });
-  }, []);
+    setLocale(locale === 'th' ? 'en' : 'th');
+  }, [locale, setLocale]);
 
   const t = useMemo(() => getTranslations(locale), [locale]);
 

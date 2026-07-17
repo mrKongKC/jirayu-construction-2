@@ -79,6 +79,36 @@ export default function HeroSection() {
             </Typography>
           </Box>
 
+          {/* Tags */}
+          <Box
+            sx={{
+              ...fadeUp(0.6),
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 1.5,
+              mt: 3,
+            }}
+          >
+            {t.hero.tags.map((tag) => (
+              <Box
+                key={tag}
+                component="span"
+                sx={(theme) => ({
+                  px: 2,
+                  py: 0.75,
+                  borderRadius: "999px",
+                  border: borderWhiteSoft(theme),
+                  background: bgPrimarySoft(theme),
+                  color: textWhiteStrong(theme),
+                  fontSize: "0.78rem",
+                  fontWeight: 500,
+                })}
+              >
+                {tag}
+              </Box>
+            ))}
+          </Box>
+
           {/* CTA */}
           <Box
             sx={{

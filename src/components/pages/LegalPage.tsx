@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Box, Container, Typography, Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useI18n } from "@/components/provider/I18nProvider";
+import { useLocalePath } from "@/hooks/useLocalePath";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { textSecondarySoft } from "@/theme/utils";
 
@@ -13,6 +14,7 @@ interface LegalPageProps {
 
 export default function LegalPage({ type }: LegalPageProps) {
   const { t } = useI18n();
+  const { toLocalePath } = useLocalePath();
   const content = t.legal[type];
 
   useDocumentMeta(
@@ -25,7 +27,7 @@ export default function LegalPage({ type }: LegalPageProps) {
       <Container maxWidth="md">
         <Button
           component={Link}
-          href="/"
+          href={toLocalePath("")}
           startIcon={<ArrowBackIcon />}
           sx={{ mb: 4 }}
         >

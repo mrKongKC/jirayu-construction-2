@@ -6,12 +6,14 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useI18n } from "@/components/provider/I18nProvider";
+import { useLocalePath } from "@/hooks/useLocalePath";
 import { contactLinks } from "@/config/contact";
 import { brand, gradientPrimaryBg, sectionSpacing, shadowPrimaryLight, textEyebrow, textLabel, textWhiteMedium, textWhiteSubtle } from "@/theme/utils";
 import { getFooterColumns, getFilteredLinks } from "./utils";
 
 export default function Footer() {
   const { t } = useI18n();
+  const { toLocalePath } = useLocalePath();
   const f = t.footer;
   const footerColumns = getFooterColumns(f);
 
@@ -93,7 +95,7 @@ export default function Footer() {
         <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, justifyContent: "center", alignItems: "center", gap: 2, mb: 2 }}>
           <Typography
             component={Link}
-            href="/privacy"
+            href={toLocalePath("privacy")}
             sx={(theme) => ({ fontSize: "0.72rem", color: textWhiteSubtle(theme), textDecoration: "none", "&:hover": { color: theme.palette.primary.light } })}
           >
             {f.privacy}
@@ -101,7 +103,7 @@ export default function Footer() {
           <Typography sx={(theme) => ({ fontSize: "0.72rem", color: textWhiteSubtle(theme), display: { xs: "none", sm: "block" } })}>·</Typography>
           <Typography
             component={Link}
-            href="/terms"
+            href={toLocalePath("terms")}
             sx={(theme) => ({ fontSize: "0.72rem", color: textWhiteSubtle(theme), textDecoration: "none", "&:hover": { color: theme.palette.primary.light } })}
           >
             {f.terms}

@@ -19,7 +19,7 @@ export function useDocumentMeta(title: string, description?: string) {
 export function useHomeDocumentMeta() {
   const { t, locale } = useI18n();
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const isHome = /^\/(th|en)\/?$/.test(pathname);
 
   useEffect(() => {
     if (!isHome) return;

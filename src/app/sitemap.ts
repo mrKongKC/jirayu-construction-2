@@ -2,6 +2,7 @@ export const dynamic = "force-static";
 
 import { MetadataRoute } from "next";
 import { siteConfig } from "@/config/seo";
+import { locales } from "@/lib/i18n";
 
 type ChangeFrequency =
   | "always"
@@ -19,19 +20,21 @@ interface RouteDefinition {
   priority: number;
 }
 
+const routeTemplates: RouteDefinition[] = [
+  { path: "", changeFrequency: "weekly", priority: 1.0 },
+  { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
 
-  const routes: RouteDefinition[] = [
-    { path: "", changeFrequency: "weekly", priority: 1.0 },
-    { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
-    { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
-  ];
-
-  return routes.map((route) => ({
-    url: `${baseUrl}${route.path}`,
-    lastModified: new Date(),
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
-  }));
+  return locales.flatMap((locale) =>
+    routeTemplates.map((route) => ({
+      url: `${baseUrl}/${locale}${route.path}`,
+      lastModified: new Date(),
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+    })),
+  );
 }

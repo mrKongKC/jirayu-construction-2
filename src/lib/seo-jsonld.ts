@@ -1,6 +1,8 @@
 import th from "@/locales/th.json";
 import en from "@/locales/en.json";
 import { siteConfig } from "@/config/seo";
+import { contactLinks } from "@/config/contact";
+import { localePath } from "@/lib/locale-path";
 import type { Locale } from "@/lib/i18n";
 
 const localeData = { th, en };
@@ -13,6 +15,7 @@ export function buildJsonLdGraph(locale: Locale = "th") {
   const { locality, region, postalCode, country } = address;
   const { latitude, longitude } = geo;
   const { days, opens, closes } = openingHours;
+  const pageUrl = `${url}${localePath(locale)}`;
 
   const localBusiness = {
     "@type": "GeneralContractor",
@@ -20,8 +23,9 @@ export function buildJsonLdGraph(locale: Locale = "th") {
     name: localeSeo.name,
     image: `${url}${ogImage}`,
     description: localeSeo.description,
-    url,
+    url: pageUrl,
     telephone: phone,
+    email: contactLinks.email,
     address: {
       "@type": "PostalAddress",
       addressLocality: locality,
@@ -44,12 +48,13 @@ export function buildJsonLdGraph(locale: Locale = "th") {
       "@type": "AdministrativeArea",
       name: region,
     },
+    sameAs: [contactLinks.facebookUrl],
   };
 
   const website = {
     "@type": "WebSite",
     "@id": `${url}/#website`,
-    url,
+    url: pageUrl,
     name: localeSeo.title,
     description: localeSeo.description,
     inLanguage: locale === "th" ? "th-TH" : "en-US",
@@ -58,7 +63,7 @@ export function buildJsonLdGraph(locale: Locale = "th") {
 
   const faqPage = {
     "@type": "FAQPage",
-    "@id": `${url}/#faq`,
+    "@id": `${pageUrl}#faq`,
     mainEntity: t.faq.items.map((item) => ({
       "@type": "Question",
       name: item.question,

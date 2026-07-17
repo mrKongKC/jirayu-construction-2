@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import ThemeRegistry from "@/components/layouts/ThemeRegistry";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import { siteConfig } from "@/config/seo";
+import { buildSiteVerification } from "@/lib/seo-metadata";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,6 +67,12 @@ export const metadata: Metadata = {
       "en-US": `${url}/en`,
     },
   },
+  icons: {
+    icon: [{ url: "/jirayu.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/jirayu.svg", type: "image/svg+xml" }],
+  },
+  manifest: "/manifest.webmanifest",
+  verification: buildSiteVerification(),
 };
 
 export default function RootLayout({
@@ -75,6 +83,7 @@ export default function RootLayout({
   return (
     <html lang="th" suppressHydrationWarning className={geistSans.variable}>
       <body>
+        <GoogleAnalytics />
         <ThemeRegistry>{children}</ThemeRegistry>
       </body>
     </html>

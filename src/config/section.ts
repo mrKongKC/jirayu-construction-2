@@ -3,6 +3,7 @@ export const sectionConfig = {
   showServices: true,
   showPortfolio: true,
   showWhyUs: true,
+  showSeoContent: true,
   showProcess: true,
   showReviews: false,
   showCTABanner: true,

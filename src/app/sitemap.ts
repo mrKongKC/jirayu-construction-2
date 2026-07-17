@@ -28,11 +28,12 @@ const routeTemplates: RouteDefinition[] = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
+  const lastModified = new Date(siteConfig.sitemapLastModified);
 
   return locales.flatMap((locale) =>
     routeTemplates.map((route) => ({
       url: `${baseUrl}/${locale}${route.path}`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
     })),

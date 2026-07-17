@@ -32,7 +32,7 @@
     "line1": "Build Your",
     "line2": "Dream Home",
     "line3": "With Professionals",
-    "sub": "Jirayu Construction offers full-service home building in Nan Province with a professional team, premium materials, and dedicated care at every step.",
+    "sub": "Jirayu Construction — your trusted construction partner in Nan Province, Thailand. Full-service home building, general contracting, and architectural design with a professional team and premium materials.",
     "tags": ["10+ Years Experience", "Workmanship Warranty", "Free Design", "Transparent Pricing"],
     "ctaPrimary": "Get a Free Quote",
     "ctaSecondary": "View Portfolio",
@@ -211,11 +211,31 @@
     "scrollTop": "Back to Top"
   },
   "switchLang": "TH",
+  "seoContent": {
+    "eyebrow": "Construction in Nan Province",
+    "title": "Full-Service",
+    "titleAccent": "Construction in Nan Province",
+    "subtitle": "Jirayu Construction handles every step — from design and build to handover",
+    "paragraphs": [
+      "Jirayu Construction is a leading construction company in Nan Province, offering home building, general contracting, architectural design, and interior finishing. With over 10 years of experience, our professional team understands local conditions, materials, and what clients in the region need.",
+      "We take on projects across Nan Province — residential homes, commercial buildings, and renovations — with a focus on structural quality, safety, transparent pricing, and on-time delivery backed by reliable after-sales support.",
+      "Whether you are building new, extending, or upgrading an existing property, our team offers free consultation, site surveys, and clear quotations so you can invest in construction in Nan Province with confidence."
+    ],
+    "areas": ["Mueang Nan", "Tha Wang Pha", "Pua", "Ban Luang", "Wiang Sa", "Mae Charim", "Na Noi"]
+  },
   "faq": {
     "eyebrow": "FAQ",
     "title": "Frequently",
     "titleAccent": "Asked Questions",
     "items": [
+      {
+        "question": "What is the starting price for construction in Nan Province?",
+        "answer": "Construction costs in Nan Province depend on project size, scope, materials, and design complexity. We provide a free initial estimate after a site survey so you receive a clear, transparent quotation before work begins."
+      },
+      {
+        "question": "How do I choose a reliable contractor in Nan Province?",
+        "answer": "Look for proven experience, a strong portfolio, transparent pricing, a clear contract, and after-sales support. Jirayu Construction has over 10 years serving Nan Province with professional teams and progress tracking throughout every project."
+      },
       {
         "question": "How long does it take to build a home in Nan Province?",
         "answer": "Timeline depends on size and complexity. A single-storey home typically takes 4–8 months; a two-storey home may take 8–14 months. We provide a clear schedule in the contract after site survey and design."

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { translations, type Locale } from '@/lib/i18n';
 import { localePath } from '@/lib/locale-path';
 import { siteConfig } from '@/config/seo';
+import { buildOpenGraph, buildTwitterCard } from '@/lib/seo-metadata';
 
 function buildLanguageAlternates(locale: Locale, path = '') {
   const { url } = siteConfig;
@@ -23,18 +24,20 @@ export function buildLegalMetadata(
 ): Metadata {
   const content = translations[locale].legal[type];
   const alternates = buildLanguageAlternates(locale, type);
+  const title = content.title;
+  const description = content.metaDescription;
 
   return {
-    title: content.title,
-    description: content.metaDescription,
+    title,
+    description,
     alternates,
-    openGraph: {
-      title: content.title,
-      description: content.metaDescription,
-      locale: locale === 'th' ? 'th_TH' : 'en_US',
-      alternateLocale: locale === 'th' ? ['en_US'] : ['th_TH'],
+    openGraph: buildOpenGraph({
+      title,
+      description,
       url: alternates.canonical,
-    },
+      locale,
+    }),
+    twitter: buildTwitterCard(title, description),
   };
 }
 

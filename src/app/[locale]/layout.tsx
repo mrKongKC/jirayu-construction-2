@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { locales, translations, isValidLocale, type Locale } from "@/lib/i18n";
-import { siteConfig } from "@/config/seo";
 import { buildLanguageAlternates } from "@/lib/locale-metadata";
+import { buildJsonLdGraph } from "@/lib/seo-jsonld";
+import { buildOpenGraph, buildTwitterCard } from "@/lib/seo-metadata";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -18,8 +19,7 @@ export async function generateMetadata({
 
   const locale = localeParam as Locale;
   const t = translations[locale];
-  const localeSeo = siteConfig.locales[locale];
-  const { url, ogImage } = siteConfig;
+  const alternates = buildLanguageAlternates(locale);
 
   return {
     title: {
@@ -28,30 +28,14 @@ export async function generateMetadata({
     },
     description: t.siteDesc,
     keywords: t.keywords,
-    alternates: buildLanguageAlternates(locale),
-    openGraph: {
-      type: "website",
-      locale: locale === "th" ? "th_TH" : "en_US",
-      alternateLocale: locale === "th" ? ["en_US"] : ["th_TH"],
-      url: `${url}/${locale}`,
-      siteName: localeSeo.name,
+    alternates,
+    openGraph: buildOpenGraph({
       title: t.siteTitle,
       description: t.siteDesc,
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: localeSeo.ogAlt,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t.siteTitle,
-      description: t.siteDesc,
-      images: [ogImage],
-    },
+      url: alternates.canonical,
+      locale,
+    }),
+    twitter: buildTwitterCard(t.siteTitle, t.siteDesc),
   };
 }
 
@@ -62,7 +46,19 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
-  if (!isValidLocale(locale)) notFound();
-  return children;
+  const { locale: localeParam } = await params;
+  if (!isValidLocale(localeParam)) notFound();
+
+  const locale = localeParam as Locale;
+  const jsonLd = buildJsonLdGraph(locale);
+
+  return (
+    <div lang={locale === "th" ? "th" : "en"}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </div>
+  );
 }

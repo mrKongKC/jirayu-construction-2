@@ -20,6 +20,7 @@ export const siteConfig = {
   url: getSiteUrl(),
   ogImage: "/og-img.png",
   contact: contactLinks,
+  sitemapLastModified: "2026-07-17",
 
   seo: {
     title: th.siteTitle,

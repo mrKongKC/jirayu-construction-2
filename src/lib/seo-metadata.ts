@@ -56,3 +56,9 @@ export function buildSiteVerification(): Metadata['verification'] {
   if (!google) return undefined;
   return { google };
 }
+
+export function absoluteAssetUrl(path: string): string {
+  if (path.startsWith('http')) return path;
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  return `${siteConfig.url}${normalized}`;
+}

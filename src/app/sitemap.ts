@@ -3,6 +3,7 @@ export const dynamic = "force-static";
 import { MetadataRoute } from "next";
 import { siteConfig } from "@/config/seo";
 import { locales } from "@/lib/i18n";
+import { getAllPortfolioSlugs } from "@/config/portfolio";
 
 type ChangeFrequency =
   | "always"
@@ -29,8 +30,9 @@ const routeTemplates: RouteDefinition[] = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
   const lastModified = new Date(siteConfig.sitemapLastModified);
+  const portfolioSlugs = getAllPortfolioSlugs();
 
-  return locales.flatMap((locale) =>
+  const staticPages = locales.flatMap((locale) =>
     routeTemplates.map((route) => ({
       url: `${baseUrl}/${locale}${route.path}`,
       lastModified,
@@ -38,4 +40,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: route.priority,
     })),
   );
+
+  const portfolioPages = locales.flatMap((locale) =>
+    portfolioSlugs.map((slug) => ({
+      url: `${baseUrl}/${locale}/portfolio/${slug}`,
+      lastModified,
+      changeFrequency: "monthly" as ChangeFrequency,
+      priority: 0.8,
+    })),
+  );
+
+  return [...staticPages, ...portfolioPages];
 }

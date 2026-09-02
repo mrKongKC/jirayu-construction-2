@@ -11,44 +11,12 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const { name, url, ogImage, seo } = siteConfig;
-const { title, titleTemplate, description, keywords } = seo;
-
 export const metadata: Metadata = {
-  metadataBase: new URL(url),
-  title: {
-    default: title,
-    template: titleTemplate,
-  },
-  description,
-  keywords,
-  authors: [{ name }],
-  creator: name,
-  publisher: name,
+  metadataBase: new URL(siteConfig.url),
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   category: "construction",
-  openGraph: {
-    type: "website",
-    locale: "th_TH",
-    alternateLocale: ["en_US"],
-    url,
-    siteName: name,
-    title,
-    description,
-    images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.seo.ogAlt,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: [ogImage],
-  },
   robots: {
     index: true,
     follow: true,
@@ -57,14 +25,6 @@ export const metadata: Metadata = {
       follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,
-    },
-  },
-  alternates: {
-    canonical: `${url}/th`,
-    languages: {
-      "x-default": `${url}/th`,
-      "th-TH": `${url}/th`,
-      "en-US": `${url}/en`,
     },
   },
   icons: {

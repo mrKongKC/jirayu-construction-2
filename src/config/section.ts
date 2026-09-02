@@ -5,7 +5,6 @@ export const sectionConfig = {
   showWhyUs: true,
   showSeoContent: true,
   showProcess: true,
-  showReviews: false,
   showCTABanner: true,
   showContact: true,
   showFaq: true,

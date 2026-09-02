@@ -12,14 +12,9 @@ export const textWhiteMedium = (theme: Theme) =>
 export const textWhiteSubtle = (theme: Theme) =>
   alpha(theme.palette.common.white, 0.3);
 
-export const textWhiteHover = (theme: Theme) => theme.palette.common.white;
-
 // dynamic
 export const textPrimaryAlpha = (theme: Theme, opacity: number) =>
   alpha(theme.palette.primary.main, opacity);
-
-export const textPrimarySoft = (theme: Theme) =>
-  alpha(theme.palette.primary.main, 0.6);
 
 export const textEyebrow = {
   fontSize: "0.72rem",

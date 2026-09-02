@@ -3,30 +3,6 @@ import { Translations } from "@/lib/i18n";
 
 type ColKey = keyof Translations["footer"]["cols"];
 
-const SECTIONS_MAP = [
-  {
-    id: "footer-services",
-    configKey: "showServices" as keyof typeof config,
-    colKey: "services" as ColKey,
-    itemMapping: { 0: "showServices" as keyof typeof config },
-  },
-  {
-    id: "footer-portfolio",
-    configKey: "showPortfolio" as keyof typeof config,
-    colKey: "portfolio" as ColKey,
-    itemMapping: {},
-  },
-  {
-    id: "footer-info",
-    configKey: "showWhyUs" as keyof typeof config,
-    colKey: "info" as ColKey,
-    itemMapping: {
-      2: "showReviews" as keyof typeof config,
-      3: "showProcess" as keyof typeof config,
-    },
-  },
-] as const;
-
 export interface FooterColumns {
   id: string;
   colKey: ColKey;
@@ -34,30 +10,38 @@ export interface FooterColumns {
   links: readonly string[];
 }
 
-const columnRegistry: Record<ColKey, Record<number, keyof typeof config>> = {
+const FOOTER_COLUMNS: {
+  id: string;
+  configKey: keyof typeof config;
+  colKey: ColKey;
+}[] = [
+  { id: "footer-services", configKey: "showServices", colKey: "services" },
+  { id: "footer-portfolio", configKey: "showPortfolio", colKey: "portfolio" },
+  { id: "footer-info", configKey: "showWhyUs", colKey: "info" },
+];
+
+const linkFilters: Record<ColKey, Record<number, keyof typeof config>> = {
   services: { 0: "showServices" },
   portfolio: {},
-  info: { 2: "showReviews", 3: "showProcess" },
+  info: { 2: "showProcess" },
 };
 
 export const getFilteredLinks = (
   links: readonly string[],
   colKey: ColKey,
 ) => {
-  const mapper = columnRegistry[colKey] || {};
+  const mapper = linkFilters[colKey] ?? {};
   return links.filter((_, i) => config[mapper[i]] !== false);
 };
 
 export const getFooterColumns = (
   footer: Translations["footer"],
 ): FooterColumns[] => {
-  return SECTIONS_MAP.map((section) => ({
-    id: section.id,
-    colKey: section.colKey,
-    heading: footer.colHeadings[section.colKey],
-    links: footer.cols[section.colKey] ?? [],
-    show: config[section.configKey],
-  }))
-    .filter((col) => col.show)
-    .map(({ id, colKey, heading, links }) => ({ id, colKey, heading, links }));
+  return FOOTER_COLUMNS.filter((col) => config[col.configKey])
+    .map(({ id, colKey }) => ({
+      id,
+      colKey,
+      heading: footer.colHeadings[colKey],
+      links: footer.cols[colKey] ?? [],
+    }));
 };

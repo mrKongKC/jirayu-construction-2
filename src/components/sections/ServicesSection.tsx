@@ -9,10 +9,10 @@ import SectionHeader from "@/components/common/SectionHeader";
 import IconBox from "@/components/common/IconBox";
 import OptimizedImage from "@/components/common/OptimizedImage";
 
+import { siteImages } from "@/config/images";
 import {
   textSecondarySoft,
   textPrimaryAlpha,
-  sectionSpacing,
   gridSpacing,
 } from "@/theme/utils";
 
@@ -24,21 +24,12 @@ import LandscapeIcon from "@mui/icons-material/Landscape";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 
 const ICONS = [
+  ConstructionIcon,
   HomeWorkIcon,
   DesignServicesIcon,
-  ConstructionIcon,
+  EngineeringIcon,
   ApartmentIcon,
   LandscapeIcon,
-  EngineeringIcon,
-];
-
-const IMAGES = [
-  "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&auto=format&fit=crop&q=70",
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&auto=format&fit=crop&q=70",
-  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&auto=format&fit=crop&q=70",
-  "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&auto=format&fit=crop&q=70",
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=70",
-  "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=70",
 ];
 
 export default function ServicesSection() {
@@ -51,9 +42,9 @@ export default function ServicesSection() {
         title={t.services.title}
         titleAccent={t.services.titleAccent}
         subtitle={t.services.sub}
-        accentVariant="block"
-        layout="split"
-        mb={sectionSpacing.header}
+        accentVariant="inline"
+        subtitleBelow
+        mb={{ xs: 4, md: 5 }}
       />
 
       <Grid container spacing={gridSpacing.md}>
@@ -63,6 +54,7 @@ export default function ServicesSection() {
           return (
             <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={item.title}>
               <Card
+                component="article"
                 sx={{
                   height: "100%",
                   overflow: "hidden",
@@ -71,20 +63,23 @@ export default function ServicesSection() {
               >
                 <Box sx={{ position: "relative", width: "100%", height: 180 }}>
                   <OptimizedImage
-                    src={IMAGES[i]}
-                    alt={item.title}
+                    src={siteImages.services[i]}
+                    alt={`${item.title} — ${t.title}`}
                     fill
                     sizes="(max-width: 900px) 100vw, 33vw"
                   />
                 </Box>
 
-                <CardContent sx={{ p: 3 }}>
+                <CardContent sx={{ p: { xs: 2.5, sm: 3 } }}>
                   <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
                     <IconBox>
                       <Icon sx={{ color: "primary.main" }} />
                     </IconBox>
                     <Box>
-                      <Typography sx={{ fontWeight: 700, mb: 0.25 }}>
+                      <Typography
+                        component="h3"
+                        sx={{ fontWeight: 700, mb: 0.25, fontSize: "1rem" }}
+                      >
                         {item.title}
                       </Typography>
                       <Typography

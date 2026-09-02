@@ -13,15 +13,16 @@ export default function HeroTitle({ children, gradient, component = 'p' }: Props
     <Typography
       component={component}
       sx={(theme) => ({
+        display: 'block',
         fontSize: {
-          xs: '2.8rem',
+          xs: '2.25rem',
           sm: '3.8rem',
           md: '5rem',
           lg: '6rem',
         },
-        padding:1 ,
         fontWeight: 800,
-        lineHeight: 1.05,
+        lineHeight: { xs: 1.15, md: 1.05 },
+        letterSpacing: { xs: '-0.02em', md: '-0.03em' },
         color: gradient ? undefined : 'common.white',
         ...(gradient && gradientPrimaryTextStrong(theme)),
       })}
@@ -30,4 +31,3 @@ export default function HeroTitle({ children, gradient, component = 'p' }: Props
     </Typography>
   );
 }
-

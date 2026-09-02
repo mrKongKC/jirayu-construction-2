@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { Box, Container, Typography, Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useI18n } from "@/components/provider/I18nProvider";
-import { useLocalePath } from "@/hooks/useLocalePath";
+import { useNavigateBack } from "@/hooks/useNavigateBack";
 import { textSecondarySoft } from "@/theme/utils";
 
 interface LegalPageProps {
@@ -13,15 +12,14 @@ interface LegalPageProps {
 
 export default function LegalPage({ type }: LegalPageProps) {
   const { t } = useI18n();
-  const { toLocalePath } = useLocalePath();
+  const navigateBack = useNavigateBack();
   const content = t.legal[type];
 
   return (
     <Box component="main" sx={{ py: { xs: 10, md: 12 }, minHeight: "60vh", bgcolor: "background.default" }}>
-      <Container maxWidth="md">
+      <Container maxWidth="md" sx={{ px: { xs: 2, sm: 3 } }}>
         <Button
-          component={Link}
-          href={toLocalePath("")}
+          onClick={navigateBack}
           startIcon={<ArrowBackIcon />}
           sx={{ mb: 4 }}
         >

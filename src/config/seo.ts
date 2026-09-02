@@ -1,17 +1,23 @@
 import th from "@/locales/th.json";
 import en from "@/locales/en.json";
-import { contactLinks } from "@/config/contact";
 
 function getSiteUrl(): string {
-  if (process.env.NEXT_PUBLIC_SITE_URL) {
-    return process.env.NEXT_PUBLIC_SITE_URL;
-  }
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+  if (explicit) return explicit;
+
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
   }
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
   }
+
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(
+      "NEXT_PUBLIC_SITE_URL must be set for production builds so canonicals, sitemap, and JSON-LD are not localhost.",
+    );
+  }
+
   return "http://localhost:3000";
 }
 
@@ -19,35 +25,7 @@ export const siteConfig = {
   name: th.title,
   url: getSiteUrl(),
   ogImage: "/og-img.png",
-  contact: contactLinks,
-  sitemapLastModified: "2026-07-17",
-
-  seo: {
-    title: th.siteTitle,
-    titleTemplate: `%s | ${th.title}`,
-    description: th.siteDesc,
-    keywords: th.keywords,
-    ogAlt: th.ogAlt,
-  },
-
-  business: {
-    phone: contactLinks.phone,
-    address: {
-      locality: "เมืองน่าน",
-      region: "น่าน",
-      postalCode: "55000",
-      country: "TH",
-    },
-    geo: {
-      latitude: "18.7756",
-      longitude: "100.7730",
-    },
-    openingHours: {
-      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      opens: "08:00",
-      closes: "17:00",
-    },
-  },
+  sitemapLastModified: "2026-09-02",
 
   locales: {
     th: {
@@ -55,12 +33,14 @@ export const siteConfig = {
       title: th.siteTitle,
       description: th.siteDesc,
       ogAlt: th.ogAlt,
+      keywords: th.keywords,
     },
     en: {
       name: en.title,
       title: en.siteTitle,
       description: en.siteDesc,
       ogAlt: en.ogAlt,
+      keywords: en.keywords,
     },
   },
 };

@@ -3,7 +3,6 @@
 import React, {
   createContext,
   useContext,
-  useState,
   useCallback,
   useEffect,
   useMemo,
@@ -33,12 +32,6 @@ const I18nContext = createContext<I18nContextValue>({
   toggleLocale: () => {},
 });
 
-function readStoredLocale(): Locale {
-  if (typeof window === 'undefined') return defaultLocale;
-  const stored = localStorage.getItem(LOCALE_STORAGE_KEY);
-  return stored === 'en' || stored === 'th' ? stored : defaultLocale;
-}
-
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const params = useParams();
   const pathname = usePathname();
@@ -50,23 +43,14 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
       ? paramLocale
       : null;
 
-  const [locale, setLocaleState] = useState<Locale>(defaultLocale);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const locale = urlLocale ?? defaultLocale;
 
   useEffect(() => {
     if (urlLocale) {
-      setLocaleState(urlLocale);
       localStorage.setItem(LOCALE_STORAGE_KEY, urlLocale);
-      return;
     }
-    if (mounted) {
-      setLocaleState(readStoredLocale());
-    }
-  }, [urlLocale, mounted]);
+    document.documentElement.lang = locale;
+  }, [urlLocale, locale]);
 
   const setLocale = useCallback(
     (l: Locale) => {
@@ -87,11 +71,6 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   }, [locale, setLocale]);
 
   const t = useMemo(() => getTranslations(locale), [locale]);
-
-  useEffect(() => {
-    if (!mounted) return;
-    document.documentElement.lang = locale;
-  }, [locale, mounted]);
 
   return (
     <I18nContext.Provider value={{ locale, t, setLocale, toggleLocale }}>

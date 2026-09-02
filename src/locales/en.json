@@ -1,14 +1,17 @@
 {
-  "title": "Jirayu",
-  "siteTitle": "Jirayu Construction | Home Builder Nan Province",
-  "siteDesc": "Jirayu Construction — full-service home builder in Nan Province, Thailand. Professional team, premium materials, fair pricing, 10+ years experience.",
-  "ogAlt": "Jirayu Construction — home builder in Nan Province, Thailand",
+  "title": "Jirayu Construction Materials",
+  "siteTitle": "Home Contractor Nan Province | Jirayu Construction Materials",
+  "siteDesc": "Jirayu Construction Materials (Reg. 0553555000034) — home contractor serving Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, and Wiang Sa only. General construction, civil engineering, design, and materials.",
+  "ogAlt": "Jirayu Construction Materials — home contractor in Nan Province, Thailand",
   "keywords": [
-    "Jirayu Construction",
-    "home builder Nan Thailand",
-    "construction company Nan",
-    "house renovation Nan province",
-    "contractor in Nan"
+    "home contractor Nan Thailand",
+    "general contractor Nan province",
+    "construction materials Nan",
+    "civil engineering Nan",
+    "surveying Nan province",
+    "Jirayu Construction Materials",
+    "0553555000034",
+    "house builder Nan"
   ],
   "common": {
     "tagline": "Construction · Nan",
@@ -23,7 +26,6 @@
     "services": "Services",
     "portfolio": "Portfolio",
     "whyUs": "Why Us",
-    "reviews": "Reviews",
     "contact": "Contact",
     "cta": "Free Consult"
   },
@@ -32,92 +34,45 @@
     "line1": "Build Your",
     "line2": "Dream Home",
     "line3": "With Professionals",
-    "sub": "Jirayu Construction — your trusted construction partner in Nan Province, Thailand. Full-service home building, general contracting, and architectural design with a professional team and premium materials.",
-    "tags": ["10+ Years Experience", "Workmanship Warranty", "Free Design", "Transparent Pricing"],
+    "sub": "Jirayu Construction Materials — general contractor serving Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, and Wiang Sa. Construction, civil engineering, design, drafting, plan certification, and materials at 36 Moo 10, Kong Khwai, Mueang Nan.",
+    "tags": ["Est. 2012", "Reg. 0553555000034", "Free Design", "Transparent Pricing"],
     "ctaPrimary": "Get a Free Quote",
     "ctaSecondary": "View Portfolio",
     "stats": [
-      { "num": "10+", "label": "Years Experience" },
+      { "num": "14+", "label": "Years Experience" },
       { "num": "200+", "label": "Projects Completed" },
       { "num": "100%", "label": "Client Satisfaction" },
       { "num": "24/7", "label": "After-Sales Support" }
     ]
   },
   "services": {
-    "eyebrow": "Our Services",
-    "title": "Full-Service Construction",
-    "titleAccent": "Covering Every Need",
-    "sub": "We provide comprehensive construction services from design and build to interior finishing and after-sales care.",
+    "eyebrow": "Home Contractor Nan Province",
+    "title": "Full-Service",
+    "titleAccent": "Construction Services",
+    "sub": "Registered services: general contracting, civil engineering, design, drafting, plan certification, surveying, and construction materials — in Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, and Wiang Sa only.",
     "items": [
-      { "title": "Home Building", "en": "Home Building", "desc": "Residential construction of all types — single to three-storey homes — built to premium standards." },
-      { "title": "Architectural Design", "en": "Architectural Design", "desc": "Home and building design in Modern, Lanna, and Contemporary styles by experienced professionals." },
-      { "title": "General Contracting", "en": "General Contractor", "desc": "Contracting for public and private projects — commercial buildings, resorts and more." },
-      { "title": "Interior Design", "en": "Interior Design", "desc": "Full-space interior design and decoration with quality materials, beautiful and functional." },
-      { "title": "Landscape Design", "en": "Landscape Design", "desc": "Outdoor garden design, water features, and green spaces to complete your home." },
-      { "title": "After-Sales Service", "en": "After-Sales Service", "desc": "Ongoing maintenance and support after project handover — your peace of mind is our priority." }
+      { "title": "General Contracting Nan", "en": "General Contractor", "desc": "General construction for public and private projects in Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, and Wiang Sa — commercial buildings, offices, and all structures." },
+      { "title": "Home Building Nan", "en": "Home Building", "desc": "Residential construction in Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, and Wiang Sa — single to three-storey homes built to premium standards." },
+      { "title": "Design & Plan Certification", "en": "Design & Certification", "desc": "Design, drafting, and plan certification for residential houses, buildings, and structures within our 5 service districts." },
+      { "title": "Civil Engineering", "en": "Civil Engineering", "desc": "All types of civil engineering work in Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, and Wiang Sa with a professional team." },
+      { "title": "Construction Materials", "en": "Construction Materials", "desc": "Construction materials and related equipment in Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, and Wiang Sa." },
+      { "title": "Surveying", "en": "Surveying", "desc": "All types of surveying in Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, and Wiang Sa for construction, design, and permits." }
     ]
   },
   "portfolio": {
-    "eyebrow": "Our Portfolio",
-    "title": "Projects We Are",
-    "titleAccent": "Proud Of",
-    "cats": ["All", "Single Storey", "Two Storey", "Lanna Style", "Modern"],
-    "projects": [
-      {
-        "id": 1,
-        "type": "Single Storey",
-        "title": "Jirayu Series A",
-        "location": "Mueang Nan",
-        "area": "160 sqm",
-        "img": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&auto=format&fit=crop&q=80",
-        "featured": true
-      },
-      {
-        "id": 2,
-        "type": "Lanna Style",
-        "title": "Lanna Heritage Home",
-        "location": "Tha Wang Pha, Nan",
-        "area": "220 sqm",
-        "img": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800&auto=format&fit=crop&q=80",
-        "featured": false
-      },
-      {
-        "id": 3,
-        "type": "Modern",
-        "title": "Modern Villa Nan",
-        "location": "Pua, Nan",
-        "area": "280 sqm",
-        "img": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&auto=format&fit=crop&q=80",
-        "featured": false
-      },
-      {
-        "id": 4,
-        "type": "Two Storey",
-        "title": "Jirayu Series B",
-        "location": "Ban Luang, Nan",
-        "area": "240 sqm",
-        "img": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&auto=format&fit=crop&q=80",
-        "featured": true
-      },
-      {
-        "id": 5,
-        "type": "Two Storey",
-        "title": "Twin Peak Residence",
-        "location": "Santisuk, Nan",
-        "area": "200 sqm",
-        "img": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&auto=format&fit=crop&q=80",
-        "featured": false
-      },
-      {
-        "id": 6,
-        "type": "Modern",
-        "title": "Valley View House",
-        "location": "Wiang Sa, Nan",
-        "area": "190 sqm",
-        "img": "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&auto=format&fit=crop&q=80",
-        "featured": false
-      }
-    ]
+    "eyebrow": "Past Projects",
+    "title": "Construction Projects",
+    "titleAccent": "in Nan Province"
+  },
+  "portfolioDetail": {
+    "back": "Back to portfolio",
+    "gallery": "Project gallery",
+    "location": "Location",
+    "scope": "Project scope",
+    "district": "Service district",
+    "cta": "Interested in a similar project?",
+    "ctaSub": "Contact us for a free consultation and quote. We serve Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, and Wiang Sa.",
+    "ctaBtn": "Get a free quote"
   },
   "whyUs": {
     "eyebrow": "Why Choose Us",
@@ -145,17 +100,6 @@
       { "en": "Handover", "title": "Inspect & Handover", "desc": "Joint inspection before handover, with full workmanship warranty and after-sales care." }
     ]
   },
-  "reviews": {
-    "eyebrow": "Client Reviews",
-    "title": "Words From",
-    "titleAccent": "Our Clients",
-    "items": [
-      { "name": "Khun Somchai Wongdee", "role": "Homeowner | Mueang Nan", "avatar": "S", "project": "Two-Storey Home 250 sqm", "text": "Very impressed. The team was professional, punctual, and used excellent materials. The finished home exceeded my expectations. Highly recommended for anyone building in Nan." },
-      { "name": "Khun Napa Suksant", "role": "Homeowner | Tha Wang Pha, Nan", "avatar": "N", "project": "Lanna Style Home 180 sqm", "text": "Loved every detail. The team was attentive from design to construction, communicated well, and gave regular updates throughout the project." },
-      { "name": "Khun Prasit Mana", "role": "Homeowner | Pua, Nan", "avatar": "P", "project": "Three-Storey Home 320 sqm", "text": "Completely transparent pricing with no surprise costs. High-quality construction with close engineer supervision. Outstanding after-sales care too." },
-      { "name": "Khun Mali Raksa", "role": "Homeowner | Ban Luang, Nan", "avatar": "M", "project": "Single-Storey Home 160 sqm", "text": "Highly trustworthy. Meticulous work, beautiful results, exactly as designed. The team is hardworking and disciplined. Already recommended to 3 friends." }
-    ]
-  },
   "cta": {
     "eyebrow": "Start Today",
     "title": "Your Dream Home",
@@ -177,21 +121,21 @@
       "service": "Service Interested In",
       "message": "Additional Details"
     },
-    "services": ["Home Building", "Architectural Design", "General Contracting", "Interior Design", "Landscape Design", "Other"],
+    "services": ["General Contracting", "Home Building", "Design & Certification", "Civil Engineering", "Construction Materials", "Surveying"],
     "submitBtn": "Send Enquiry",
     "privacy": "Your information is kept confidential and never shared with third parties.",
     "successMsg": "Enquiry sent! Our team will contact you within 24 hours.",
     "errorMsg": "Failed to send. Please try again or call us directly.",
     "info": {
-      "phone": { "label": "Phone", "value": "081-5956897" },
-      "email": { "label": "Email", "value": "pot@gmail.com" },
-      "location": { "label": "Location", "value": "Nan Province, Thailand" },
-      "facebook": { "label": "Facebook", "value": "Jirayu Construction" }
+      "phone": { "label": "Phone", "value": "095-697-9347" },
+      "email": { "label": "Email", "value": "jirayunan555@gmail.com" },
+      "location": { "label": "Location", "value": "36 Moo 10, Kong Khwai, Mueang Nan, Nan 55000" },
+      "facebook": { "label": "Facebook", "value": "Jirayu Construction Materials" }
     }
   },
   "footer": {
-    "desc": "Jirayu Construction — full-service home builder in Nan Province with a professional team, premium materials, and fair pricing.",
-    "copyright": "© 2024-{year} Jirayu Construction · Reg. 0553555000034 · All Rights Reserved",
+    "desc": "Jirayu Construction Materials — general contractor in Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, and Wiang Sa. Reg. 0553555000034.",
+    "copyright": "© 2012-{year} Jirayu Construction Materials · Reg. 0553555000034 · All Rights Reserved",
     "privacy": "Privacy Policy",
     "terms": "Terms of Use",
     "colHeadings": {
@@ -200,9 +144,9 @@
       "info": "Info"
     },
     "cols": {
-      "services": ["Home Building", "Architectural Design", "General Contracting", "Interior Design", "Landscape Design"],
-      "portfolio": ["Single Storey", "Two Storey", "Three Storey", "Lanna Style", "Modern Style"],
-      "info": ["About Us", "Our Team", "Client Reviews", "Construction Process", "Contact Us"]
+      "services": ["General Contracting", "Home Building", "Design & Certification", "Civil Engineering", "Construction Materials"],
+      "portfolio": ["Government", "Residential", "Commercial", "Office Building", "Home Contractor Nan"],
+      "info": ["About Us", "Our Team", "Construction Process", "Contact Us"]
     }
   },
   "floating": {
@@ -212,16 +156,15 @@
   },
   "switchLang": "TH",
   "seoContent": {
-    "eyebrow": "Construction in Nan Province",
-    "title": "Full-Service",
-    "titleAccent": "Construction in Nan Province",
-    "subtitle": "Jirayu Construction handles every step — from design and build to handover",
+    "eyebrow": "Home Contractor Nan Province",
+    "title": "Jirayu Construction Materials",
+    "titleAccent": "Full-Service Contractor Nan",
+    "subtitle": "General construction · Civil engineering · Design & certification · Materials · Serving Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, Wiang Sa",
     "paragraphs": [
-      "Jirayu Construction is a leading construction company in Nan Province, offering home building, general contracting, architectural design, and interior finishing. With over 10 years of experience, our professional team understands local conditions, materials, and what clients in the region need.",
-      "We take on projects across Nan Province — residential homes, commercial buildings, and renovations — with a focus on structural quality, safety, transparent pricing, and on-time delivery backed by reliable after-sales support.",
-      "Whether you are building new, extending, or upgrading an existing property, our team offers free consultation, site surveys, and clear quotations so you can invest in construction in Nan Province with confidence."
-    ],
-    "areas": ["Mueang Nan", "Tha Wang Pha", "Pua", "Ban Luang", "Wiang Sa", "Mae Charim", "Na Noi"]
+      "Jirayu Construction Materials (Reg. 0553555000034) is a registered general contractor established 9 January 2012, located at 36 Moo 10, Kong Khwai, Mueang Nan. We provide home building, general construction, civil engineering, design, drafting, and plan certification in Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, and Wiang Sa.",
+      "We also supply construction materials and surveying services for government, commercial, office, and residential projects within our 5 service districts only — we do not accept work outside these areas.",
+      "If you are in Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, or Wiang Sa and need a registered contractor with long experience, Jirayu Construction Materials offers free consultation and site surveys."
+    ]
   },
   "faq": {
     "eyebrow": "FAQ",
@@ -250,7 +193,7 @@
       },
       {
         "question": "Which areas do you serve?",
-        "answer": "We serve all of Nan Province including Mueang Nan, Pua, Tha Wang Pha, Ban Luang, Wiang Sa, and nearby areas."
+        "answer": "We serve 5 districts only: Mueang Nan, Chiang Klang, Tha Wang Pha, Pua, and Wiang Sa. We do not accept projects outside these areas."
       }
     ]
   },

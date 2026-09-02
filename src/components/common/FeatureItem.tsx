@@ -54,7 +54,14 @@ export default function FeatureItem({ icon: Icon, label, value, href }: FeatureI
         >
           {label}
         </Typography>
-        <Typography sx={{ color: 'text.primary' }}>
+        <Typography
+          sx={{
+            color: "text.primary",
+            ...(href.startsWith("tel:")
+              ? { whiteSpace: "nowrap" }
+              : { wordBreak: "break-word" }),
+          }}
+        >
           {value}
         </Typography>
       </Box>

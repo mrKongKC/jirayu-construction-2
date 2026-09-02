@@ -8,7 +8,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useI18n } from "@/components/provider/I18nProvider";
 import { useLocalePath } from "@/hooks/useLocalePath";
 import { contactLinks } from "@/config/contact";
-import { brand, gradientPrimaryBg, sectionSpacing, shadowPrimaryLight, textEyebrow, textLabel, textWhiteMedium, textWhiteSubtle } from "@/theme/utils";
+import BrandMark from "@/components/common/BrandMark";
+import { brand, sectionSpacing, textEyebrow, textLabel, textWhiteMedium, textWhiteSubtle } from "@/theme/utils";
 import { getFooterColumns, getFilteredLinks } from "./utils";
 
 export default function Footer() {
@@ -22,20 +23,26 @@ export default function Footer() {
       <Container maxWidth="xl">
         <Grid container spacing={6} sx={{ mb: 8 }}>
           <Grid size={{ xs: 12, md: 4 }}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 3 }}>
-              <Box sx={(theme) => ({ width: 40, height: 40, background: gradientPrimaryBg(theme), borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, color: "common.white", boxShadow: shadowPrimaryLight(theme) })}>J</Box>
-              <Box>
-                <Typography sx={(theme) => ({ fontWeight: 700, fontSize: "1.1rem", color: theme.palette.background.default, lineHeight: 1 })}>{t.title}</Typography>
-                <Typography sx={(theme) => ({ ...textEyebrow, fontSize: "0.58rem", color: textWhiteMedium(theme) })}>{t.common.tagline}</Typography>
-              </Box>
-            </Box>
+            <BrandMark
+              title={t.title}
+              tagline={t.common.tagline}
+              size="md"
+              sx={{ mb: 3 }}
+              titleSx={(theme) => ({
+                color: theme.palette.background.default,
+              })}
+              taglineSx={(theme) => ({
+                ...textEyebrow,
+                color: textWhiteMedium(theme),
+              })}
+            />
             <Typography variant="body2" sx={(theme) => ({ color: textWhiteMedium(theme), mb: 3, maxWidth: 300, lineHeight: 1.85 })}>{f.desc}</Typography>
             
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5, mb: 4 }}>
               {[
                 { icon: PhoneIcon, text: t.contact.info.phone.value, href: `tel:${contactLinks.phoneTel}` },
                 { icon: EmailIcon, text: t.contact.info.email.value, href: `mailto:${contactLinks.email}` },
-                { icon: LocationOnIcon, text: t.contact.info.location.value, href: "#" }
+                { icon: LocationOnIcon, text: t.contact.info.location.value, href: contactLinks.mapsUrl }
               ].map((item) => (
                 <Box key={item.text} component="a" href={item.href} sx={(theme) => ({ display: "flex", alignItems: "center", gap: 1.5, textDecoration: "none", color: textWhiteMedium(theme), "&:hover": { color: theme.palette.primary.light }, transition: "all 0.2s" })}>
                   <item.icon sx={{ fontSize: "0.9rem" }} />

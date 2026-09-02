@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Box, Fab, Tooltip, Zoom } from "@mui/material";
 
 import { useI18n } from "@/components/provider/I18nProvider";
@@ -20,17 +19,7 @@ import { useAppAction } from "@/components/provider/AppActionProvider";
 
 export default function FloatingActionsSection() {
   const { t } = useI18n();
-  const { isAtBottom, isClickedDrawer } = useAppAction();
-
-  const [show, setShow] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const fn = () => setShow(window.scrollY > 400);
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
+  const { isAtBottom, isClickedDrawer, showScrollTop } = useAppAction();
 
   const fabBase = {
     borderRadius: "10px",
@@ -55,9 +44,7 @@ export default function FloatingActionsSection() {
           zIndex: 1300,
         }}
       >
-        {/* Scroll Top */}
-        {mounted && (
-          <Zoom in={show}>
+        <Zoom in={showScrollTop}>
             <Tooltip title={t.floating.scrollTop} placement="left">
               <Fab
                 size="small"
@@ -77,10 +64,8 @@ export default function FloatingActionsSection() {
                 <KeyboardArrowUpIcon fontSize="small" />
               </Fab>
             </Tooltip>
-          </Zoom>
-        )}
+        </Zoom>
 
-        {/* Facebook */}
         <Tooltip title={t.floating.facebook} placement="left">
           <Fab
             size="small"
@@ -102,7 +87,6 @@ export default function FloatingActionsSection() {
           </Fab>
         </Tooltip>
 
-        {/* Phone */}
         <Tooltip title={t.floating.phone} placement="left">
           <Fab
             size="small"

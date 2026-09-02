@@ -153,7 +153,7 @@ theme = createTheme(theme, {
       styleOverrides: {
         root: {
           borderRadius: 8,
-          padding: "11px 26px",
+          padding: "12px 28px",
           fontSize: "0.875rem",
           fontWeight: 600,
           transition: "all 0.22s ease",

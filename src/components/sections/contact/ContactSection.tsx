@@ -27,7 +27,7 @@ export default function ContactSection() {
     {
       icon: LocationOnIcon,
       ...c.info.location,
-      href: "https://maps.google.com/?q=Nan+Thailand",
+      href: contactLinks.mapsUrl,
     },
     {
       icon: FacebookIcon,
@@ -37,7 +37,7 @@ export default function ContactSection() {
   ];
 
   return (
-    <Section id="contact" bg="paper">
+    <Section bg="paper">
       <Grid container spacing={gridSpacing.lg}>
         <Grid size={{ lg: 5, xs: 12 }}>
           <SectionHeader
@@ -58,7 +58,7 @@ export default function ContactSection() {
         </Grid>
 
         <Grid size={{ xs: 12, md: 7 }}>
-          <SectionCard>
+          <SectionCard id="contact">
             <Typography
               variant="h4"
               sx={{

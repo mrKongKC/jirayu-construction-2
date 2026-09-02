@@ -8,6 +8,8 @@ import SectionHeader from "@/components/common/SectionHeader";
 import IconBox from "@/components/common/IconBox";
 import OptimizedImage from "@/components/common/OptimizedImage";
 
+import { getYearsInBusiness } from "@/config/business";
+import { siteImages } from "@/config/images";
 import {
   borderPrimaryLight,
   bgPrimarySoft,
@@ -37,6 +39,7 @@ const ICONS = [
 
 export default function WhyUsSection() {
   const { t } = useI18n();
+  const yearsInBusiness = getYearsInBusiness();
 
   return (
     <Section id="why-us" bg="default">
@@ -57,9 +60,16 @@ export default function WhyUsSection() {
                 },
               }}
             >
-              <Box sx={{ position: "relative", width: "100%", height: 480 }}>
+              <Box
+                sx={{
+                  position: "relative",
+                  width: "100%",
+                  aspectRatio: { xs: "4/3", md: "4/5" },
+                  maxHeight: { md: 480 },
+                }}
+              >
                 <OptimizedImage
-                  src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&auto=format&fit=crop&q=80"
+                  src={siteImages.whyUs}
                   alt={t.common.alt.team}
                   fill
                   sizes="(max-width: 900px) 100vw, 40vw"
@@ -89,7 +99,7 @@ export default function WhyUsSection() {
                   lineHeight: 1.2,
                 }}
               >
-                10+
+                {yearsInBusiness}+
               </Typography>
 
               <Typography

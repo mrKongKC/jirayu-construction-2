@@ -47,18 +47,29 @@ export default function HeroSection() {
           zIndex: 3,
           pt: { xs: 14, md: 9 },
           pb: { xs: 6, md: 8 },
-          pl: { xs: 3, sm: 5, md: 8, lg: 12 },
-          pr: { xs: 2, sm: 3, md: 4, lg: 6 },
+          px: { xs: 3, sm: 3, md: 8, lg: 12 },
         }}
       >
-        <Box sx={{ maxWidth: { xs: "100%", md: "60%", xl: "52%" } }}>
+        <Box
+          sx={{
+            maxWidth: { xs: "100%", md: "60%", xl: "52%" },
+            pl: 0,
+          }}
+        >
           {/* Eyebrow */}
           <Box sx={fadeUp(0.15)}>
             <SectionEyebrow title={t.hero.eyebrow} />
           </Box>
 
           {/* Title */}
-          <Box sx={fadeUp(0.3)}>
+          <Box
+            sx={{
+              ...fadeUp(0.3),
+              display: "flex",
+              flexDirection: "column",
+              gap: { xs: 0.25, md: 0 },
+            }}
+          >
             <HeroTitle component="h1">{t.hero.line1}</HeroTitle>
             <HeroTitle gradient component="span">{t.hero.line2}</HeroTitle>
             <HeroTitle component="span">{t.hero.line3}</HeroTitle>
@@ -115,18 +126,22 @@ export default function HeroSection() {
               ...fadeUp(0.75),
               display: "flex",
               flexWrap: "wrap",
-              gap: 2,
-              mt: 4,
+              gap: { xs: 1.5, sm: 2 },
+              mt: { xs: 4, md: 5 },
             }}
           >
-            <PrimaryButton>{t.hero.ctaPrimary}</PrimaryButton>
+            <PrimaryButton component="a" href="#contact">
+              {t.hero.ctaPrimary}
+            </PrimaryButton>
             <Button
               variant="outlined"
               size="large"
+              component="a"
+              href="#portfolio"
               sx={(theme) => ({
                 fontSize: "0.875rem",
-                py: 1.6,
-                px: 3.5,
+                py: { xs: 1.75, md: 2 },
+                px: { xs: 3, md: 3.5 },
                 border: borderWhiteSoft(theme),
                 color: "common.white",
 

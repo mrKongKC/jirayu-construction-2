@@ -16,6 +16,10 @@ export function isValidLocale(locale: string): locale is Locale {
   return locales.includes(locale as Locale);
 }
 
+export function localeStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export function formatCopyright(template: string, year = new Date().getFullYear()) {
   return template.replace('{year}', String(year));
 }

@@ -12,8 +12,8 @@ export default function PrimaryButton(props: ButtonProps) {
       sx={[
         (theme) => ({
           fontSize: '0.875rem',
-          py: 1.6,
-          px: 3.5,
+          py: { xs: 1.75, md: 2 },
+          px: { xs: 3, md: 3.5 },
           boxShadow: shadowPrimarySoft(theme),
         }),
         ...(Array.isArray(sx) ? sx : [sx]),

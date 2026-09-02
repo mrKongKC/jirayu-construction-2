@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { locales, translations, isValidLocale, type Locale } from "@/lib/i18n";
-import { buildLanguageAlternates } from "@/lib/locale-metadata";
-import { buildJsonLdGraph } from "@/lib/seo-jsonld";
-import { buildOpenGraph, buildTwitterCard } from "@/lib/seo-metadata";
+import { isValidLocale, localeStaticParams, type Locale } from "@/lib/i18n";
+import { buildLocaleRootMetadata } from "@/lib/seo/page-metadata";
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return localeStaticParams();
 }
+
+export const dynamicParams = false;
 
 export async function generateMetadata({
   params,
@@ -16,27 +16,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale: localeParam } = await params;
   if (!isValidLocale(localeParam)) return {};
-
-  const locale = localeParam as Locale;
-  const t = translations[locale];
-  const alternates = buildLanguageAlternates(locale);
-
-  return {
-    title: {
-      default: t.siteTitle,
-      template: `%s | ${t.title}`,
-    },
-    description: t.siteDesc,
-    keywords: t.keywords,
-    alternates,
-    openGraph: buildOpenGraph({
-      title: t.siteTitle,
-      description: t.siteDesc,
-      url: alternates.canonical,
-      locale,
-    }),
-    twitter: buildTwitterCard(t.siteTitle, t.siteDesc),
-  };
+  return buildLocaleRootMetadata(localeParam as Locale);
 }
 
 export default async function LocaleLayout({
@@ -49,16 +29,7 @@ export default async function LocaleLayout({
   const { locale: localeParam } = await params;
   if (!isValidLocale(localeParam)) notFound();
 
-  const locale = localeParam as Locale;
-  const jsonLd = buildJsonLdGraph(locale);
+  const lang = localeParam === "th" ? "th" : "en";
 
-  return (
-    <div lang={locale === "th" ? "th" : "en"}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      {children}
-    </div>
-  );
+  return <div lang={lang}>{children}</div>;
 }

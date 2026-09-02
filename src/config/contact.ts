@@ -1,8 +1,13 @@
+import { businessRegistry } from "@/config/business";
+
 export const contactLinks = {
-  phone: "081-5956897",
-  phoneTel: "+66815956897",
-  email: "pot@gmail.com",
+  phone: "095-697-9347",
+  phoneTel: "+66956979347",
+  email: "jirayunan555@gmail.com",
   facebookUrl: "https://www.facebook.com/profile.php?id=61556976380918",
+  address: businessRegistry.address.fullTh,
+  mapsUrl:
+    "https://maps.google.com/?q=36+Moo+10+Kong+Khwai+Mueang+Nan+Nan+55000",
 } as const;
 
 export interface ContactFormData {

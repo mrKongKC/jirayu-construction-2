@@ -1,30 +1,33 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Masonry from "@mui/lab/Masonry";
 import { Box, Typography, Tabs, Tab } from "@mui/material";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 import { useI18n } from "@/components/provider/I18nProvider";
+import { useLocalePath } from "@/hooks/useLocalePath";
+import {
+  getPortfolioCategories,
+  getPortfolioProjects,
+} from "@/config/portfolio";
 
 import Section from "@/components/layouts/Section";
 import SectionHeader from "@/components/common/SectionHeader";
 import OptimizedImage from "@/components/common/OptimizedImage";
-
-import { textSecondarySoft, gridSpacing } from "@/theme/utils";
-
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import { gridSpacing } from "@/theme/utils";
 
 export default function PortfolioSection() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const { toLocalePath } = useLocalePath();
   const [tab, setTab] = useState(0);
 
-  const cats = t.portfolio.cats;
-  const projects = t.portfolio.projects;
+  const cats = getPortfolioCategories(locale);
+  const projects = getPortfolioProjects(locale);
 
   const filtered =
-    tab === 0
-      ? projects
-      : projects.filter((p) => p.type === cats[tab]);
+    tab === 0 ? projects : projects.filter((p) => p.typeLabel === cats[tab]);
 
   return (
     <Section id="portfolio" bg="paper">
@@ -32,13 +35,14 @@ export default function PortfolioSection() {
         eyebrow={t.portfolio.eyebrow}
         title={t.portfolio.title}
         titleAccent={t.portfolio.titleAccent}
-        mb={5}
+        mb={{ xs: 4, md: 5 }}
       />
 
       <Box
         sx={(theme) => ({
           borderBottom: `2px solid ${theme.palette.divider}`,
-          mb: 5,
+          mb: { xs: 4, md: 5 },
+          mx: { xs: -0.5, sm: 0 },
         })}
       >
         <Tabs
@@ -46,6 +50,7 @@ export default function PortfolioSection() {
           onChange={(_, v) => setTab(v)}
           variant="scrollable"
           scrollButtons="auto"
+          allowScrollButtonsMobile
           TabIndicatorProps={{
             style: {
               backgroundColor: "primary.main",
@@ -57,8 +62,9 @@ export default function PortfolioSection() {
               fontWeight: 500,
               color: "text.secondary",
               textTransform: "none",
-              px: 3,
-              pb: 2,
+              px: { xs: 2, sm: 3 },
+              py: { xs: 1.5, sm: 2 },
+              minHeight: { xs: 48, sm: 52 },
               "&.Mui-selected": {
                 color: "primary.main",
                 fontWeight: 700,
@@ -84,10 +90,15 @@ export default function PortfolioSection() {
         {filtered.map((p) => (
           <Box key={p.id}>
             <Box
+              component={Link}
+              href={toLocalePath(`portfolio/${p.slug}`)}
               sx={{
+                display: "block",
                 position: "relative",
                 overflow: "hidden",
                 borderRadius: 3,
+                textDecoration: "none",
+                color: "inherit",
                 cursor: "pointer",
                 aspectRatio: {
                   xs: "4/3",
@@ -105,8 +116,8 @@ export default function PortfolioSection() {
             >
               <Box sx={{ position: "relative", width: "100%", height: "100%" }}>
                 <OptimizedImage
-                  src={p.img}
-                  alt={p.title}
+                  src={p.cover}
+                  alt={`${p.title} — ${p.location}`}
                   fill
                   sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
                   className="p-img"
@@ -140,7 +151,7 @@ export default function PortfolioSection() {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  p: { xs: 2.5, md: 3.5 },
+                  p: { xs: 2.5, sm: 3, md: 3.5 },
                   transform: "translateY(6px)",
                   opacity: 0.88,
                   transition: "all 0.35s ease",
@@ -161,9 +172,10 @@ export default function PortfolioSection() {
                         color: "primary.light",
                         textTransform: "uppercase",
                         mb: 0.75,
+                        fontSize: "0.72rem",
                       }}
                     >
-                      {p.type} · {p.area}
+                      {p.typeLabel} · {p.area}
                     </Typography>
 
                     <Typography
@@ -172,15 +184,17 @@ export default function PortfolioSection() {
                         color: "common.white",
                         fontWeight: 700,
                         mb: 0.25,
+                        fontSize: { xs: "1.1rem", md: "1.25rem" },
                       }}
                     >
                       {p.title}
                     </Typography>
 
                     <Typography
-                      sx={(theme) => ({
-                        color: textSecondarySoft(theme),
-                      })}
+                      sx={{
+                        color: "rgba(255,255,255,0.85)",
+                        fontSize: "0.9rem",
+                      }}
                     >
                       {p.location}
                     </Typography>
@@ -190,6 +204,7 @@ export default function PortfolioSection() {
                     sx={(theme) => ({
                       width: 40,
                       height: 40,
+                      flexShrink: 0,
                       border: `1px solid ${theme.palette.common.white}`,
                       borderRadius: 2,
                       display: "flex",
@@ -199,13 +214,6 @@ export default function PortfolioSection() {
 
                       "& svg": {
                         color: theme.palette.common.white,
-                      },
-
-                      "&:hover": {
-                        borderColor: theme.palette.primary.light,
-                        "& svg": {
-                          color: theme.palette.primary.light,
-                        },
                       },
                     })}
                   >

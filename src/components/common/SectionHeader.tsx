@@ -14,7 +14,7 @@ interface SectionHeaderProps {
   accentVariant?: "inline" | "block" | "inline-spaced";
   layout?: "default" | "split";
   subtitleBelow?: boolean;
-  mb?: number | { xs?: number; md?: number };
+  mb?: number | { xs?: number; sm?: number; md?: number };
 }
 
 function TitleBlock({
@@ -74,7 +74,7 @@ export default function SectionHeader({
       <SectionEyebrow title={eyebrow} />
 
       {layout === "split" && subtitle ? (
-        <Grid container spacing={gridSpacing.lg} alignItems="flex-end">
+        <Grid container spacing={gridSpacing.md} alignItems="flex-start">
           <Grid size={{ xs: 12, md: 6 }}>
             <TitleBlock
               title={title}
@@ -90,6 +90,8 @@ export default function SectionHeader({
               sx={(theme) => ({
                 color: textSecondarySoft(theme),
                 lineHeight: 1.85,
+                fontSize: { xs: "0.95rem", md: "1.05rem" },
+                maxWidth: 480,
               })}
             >
               {subtitle}
@@ -113,7 +115,8 @@ export default function SectionHeader({
                 lineHeight: 1.85,
                 maxWidth: 640,
                 mx: "auto",
-                mt: 2,
+                mt: { xs: 2, md: 2.5 },
+                fontSize: { xs: "0.95rem", md: "1.05rem" },
               })}
             >
               {subtitle}
@@ -124,9 +127,9 @@ export default function SectionHeader({
               sx={(theme) => ({
                 color: textSecondarySoft(theme),
                 lineHeight: 1.85,
-                mt: 2.5,
-                mb: 6,
-                maxWidth: 400,
+                mt: { xs: 2, md: 2.5 },
+                maxWidth: { xs: "100%", md: 640 },
+                fontSize: { xs: "0.95rem", md: "1.05rem" },
               })}
             >
               {subtitle}

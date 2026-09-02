@@ -1,4 +1,4 @@
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/seo";
@@ -8,9 +8,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: "/",     
+        allow: "/",
       },
     ],
-    sitemap: `${siteConfig.url}/sitemap.xml`, 
+    sitemap: `${siteConfig.url}/sitemap.xml`,
   };
 }

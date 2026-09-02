@@ -1,7 +1,7 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/seo";
-
-const redirectScript = `(function(){try{var l=localStorage.getItem("locale");location.replace("/"+(l==="en"||l==="th"?l:"th"));}catch(e){location.replace("/th");}})();`;
+import RootRedirect from "@/components/seo/RootRedirect";
 
 export const metadata: Metadata = {
   robots: { index: false, follow: true },
@@ -18,13 +18,10 @@ export const metadata: Metadata = {
 export default function RootRedirectPage() {
   return (
     <>
-      <script dangerouslySetInnerHTML={{ __html: redirectScript }} />
       <noscript>
-        <meta httpEquiv="refresh" content="0;url=/th" />
+        <Link href="/th">ไปยังหน้าแรก / Go to homepage</Link>
       </noscript>
-      <p style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-        <a href="/th">ไปยังหน้าแรก / Go to homepage</a>
-      </p>
+      <RootRedirect />
     </>
   );
 }

@@ -1,8 +1,10 @@
-import Navbar from "@/components/layouts/navbar/Navbar";
-import Footer from "@/components/layouts/footer/Footer";
+import PageShell from "@/components/layouts/PageShell";
 import LegalPage from "@/components/pages/LegalPage";
-import { buildLegalMetadata } from "@/lib/locale-metadata";
+import JsonLd from "@/components/seo/JsonLd";
+import { buildLegalMetadata } from "@/lib/seo/page-metadata";
+import { buildLegalJsonLd } from "@/lib/seo-jsonld";
 import { isValidLocale, type Locale } from "@/lib/i18n";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -14,12 +16,21 @@ export async function generateMetadata({
   return buildLegalMetadata(locale as Locale, "privacy");
 }
 
-export default function PrivacyPage() {
+export default async function PrivacyPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: localeParam } = await params;
+  if (!isValidLocale(localeParam)) notFound();
+
+  const locale = localeParam as Locale;
+  const jsonLd = buildLegalJsonLd(locale, "privacy");
+
   return (
-    <>
-      <Navbar />
+    <PageShell>
+      <JsonLd id="jsonld-privacy" data={jsonLd} />
       <LegalPage type="privacy" />
-      <Footer />
-    </>
+    </PageShell>
   );
 }

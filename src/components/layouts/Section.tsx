@@ -11,11 +11,14 @@ export default function Section({ id, children, bg = "default" }: Props) {
     <Box
       id={id}
       sx={{
-        py: { xs: 6, md: 7 },
+        py: { xs: 8, sm: 9, md: 10 },
         backgroundColor: `background.${bg}`,
       }}
     >
-      <Container maxWidth="xl">
+      <Container
+        maxWidth="xl"
+        sx={{ px: { xs: 2.5, sm: 3, md: 4, lg: 5 } }}
+      >
         {children}
       </Container>
     </Box>

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   AppBar,
   Toolbar,
@@ -18,9 +20,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import PhoneIcon from "@mui/icons-material/Phone";
 import { useI18n } from "@/components/provider/I18nProvider";
 import { useAppAction } from "@/components/provider/AppActionProvider";
+import BrandMark from "@/components/common/BrandMark";
 import {
-  gradientPrimaryBg,
-  shadowPrimaryLight,
   textWhiteStrong,
   bgPrimaryHover,
   textWhiteMedium,
@@ -28,10 +29,18 @@ import {
 } from "@/theme/utils";
 import { sectionConfig as config } from "@/config/section";
 import { contactLinks } from "@/config/contact";
+import { isHomePathname } from "@/lib/locale-path";
+import { useLocalePath } from "@/hooks/useLocalePath";
+import { useSectionHref } from "@/hooks/useSectionHref";
 
 export default function NavbarContent() {
   const { t, toggleLocale } = useI18n();
   const { scrolled, setIsClickDrawer, isClickedDrawer } = useAppAction();
+  const pathname = usePathname();
+  const { toLocalePath } = useLocalePath();
+  const sectionHref = useSectionHref();
+  const isHome = isHomePathname(pathname);
+  const brandHref = isHome ? "#hero" : toLocalePath("");
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -40,20 +49,13 @@ export default function NavbarContent() {
     setIsClickDrawer(val);
   };
 
-  const goToSection = (href: string) => {
-    handleClickDrawer(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const closeDrawer = () => handleClickDrawer(false);
 
   const navItems = [
     { label: t.nav.home, href: "#hero", show: config.showHero },
     { label: t.nav.services, href: "#services", show: config.showServices },
     { label: t.nav.portfolio, href: "#portfolio", show: config.showPortfolio },
     { label: t.nav.whyUs, href: "#why-us", show: config.showWhyUs },
-    { label: t.nav.reviews, href: "#reviews", show: config.showReviews },
     { label: t.nav.contact, href: "#contact", show: config.showContact },
   ].filter((item) => item.show);
 
@@ -98,60 +100,29 @@ export default function NavbarContent() {
         >
           {/* Brand Identity / Logo */}
           <Box
-            onClick={() => goToSection("#hero")}
+            component={Link}
+            href={brandHref}
+            onClick={closeDrawer}
             sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1.5,
               cursor: "pointer",
               userSelect: "none",
+              textDecoration: "none",
             }}
           >
-            <Box
-              sx={(theme) => ({
-                width: 38,
-                height: 38,
-                background: gradientPrimaryBg(theme),
-                borderRadius: "8px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontWeight: 800,
-                fontSize: "1.1rem",
-                color: "common.white",
-                boxShadow: shadowPrimaryLight(theme),
+            <BrandMark
+              title={t.title}
+              tagline={t.common.tagline}
+              titleSx={(theme) => ({
+                color: scrolled
+                  ? theme.palette.text.primary
+                  : theme.palette.common.white,
               })}
-            >
-              J
-            </Box>
-            <Box>
-              <Typography
-                sx={(theme) => ({
-                  fontWeight: 700,
-                  fontSize: "1rem",
-                  color: scrolled
-                    ? theme.palette.text.primary
-                    : theme.palette.common.white,
-                  lineHeight: 1,
-                  letterSpacing: "-0.01em",
-                })}
-              >
-                {t.title}
-              </Typography>
-              <Typography
-                sx={(theme) => ({
-                  fontWeight: 400,
-                  fontSize: "0.6rem",
-                  letterSpacing: "0.12em",
-                  color: scrolled
-                    ? theme.palette.text.secondary
-                    : textWhiteStrong(theme),
-                  textTransform: "uppercase",
-                })}
-              >
-                {t.common.tagline}
-              </Typography>
-            </Box>
+              taglineSx={(theme) => ({
+                color: scrolled
+                  ? theme.palette.text.secondary
+                  : textWhiteStrong(theme),
+              })}
+            />
           </Box>
 
           {/* Desktop Navigation Menu */}
@@ -165,7 +136,9 @@ export default function NavbarContent() {
             {navItems.map((item) => (
               <Button
                 key={item.label}
-                onClick={() => goToSection(item.href)}
+                component={Link}
+                href={sectionHref(item.href)}
+                onClick={closeDrawer}
                 sx={(theme) => ({
                   color: scrolled
                     ? theme.palette.text.secondary
@@ -232,6 +205,7 @@ export default function NavbarContent() {
                 fontSize: "0.78rem",
                 py: 1,
                 px: 2.5,
+                whiteSpace: "nowrap",
               }}
             >
               {t.nav.cta}
@@ -294,7 +268,9 @@ export default function NavbarContent() {
             {navItems.map((item) => (
               <ListItem key={item.label} disablePadding sx={{ mb: 0.5 }}>
                 <ListItemButton
-                  onClick={() => goToSection(item.href)}
+                  component={Link}
+                  href={sectionHref(item.href)}
+                  onClick={closeDrawer}
                   sx={(theme) => ({
                     borderRadius: 2,
                     py: 1.5,

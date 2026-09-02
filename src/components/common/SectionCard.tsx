@@ -6,14 +6,17 @@ type Variant = "default" | "paper" | "soft";
 type Props = {
   children: React.ReactNode;
   variant?: Variant;
+  id?: string;
 };
 
 export default function SectionCard({
   children,
   variant = "default",
+  id,
 }: Props) {
   return (
     <Box
+      id={id}
       sx={(theme) => {
         let background = theme.palette.background.default;
 
@@ -30,6 +33,7 @@ export default function SectionCard({
           borderRadius: theme.shape.borderRadius,
           background,
           border: borderPrimaryLight(theme),
+          ...(id ? { scrollMarginTop: "80px" } : {}),
         };
       }}
     >

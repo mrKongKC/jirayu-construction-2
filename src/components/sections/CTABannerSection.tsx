@@ -7,6 +7,7 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import { useI18n } from "@/components/provider/I18nProvider";
 import OptimizedImage from "@/components/common/OptimizedImage";
 import { contactLinks } from "@/config/contact";
+import { siteImages } from "@/config/images";
 
 import {
   gradientPrimaryLine,
@@ -31,7 +32,7 @@ export default function CTABannerSection() {
       {/* BG Image */}
       <Box sx={{ position: "absolute", inset: 0 }}>
         <OptimizedImage
-          src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1800&auto=format&fit=crop&q=70"
+          src={siteImages.cta}
           alt={t.cta.title}
           fill
           sizes="100vw"
@@ -126,30 +127,28 @@ export default function CTABannerSection() {
             <Box
               sx={{
                 display: "flex",
-                flexDirection: { xs: "column", sm: "row" },
+                flexDirection: { xs: "column", lg: "row" },
+                flexWrap: "wrap",
                 gap: 2,
               }}
             >
-              {/* Primary CTA */}
               <Button
                 variant="contained"
                 size="large"
+                component="a"
+                href="#contact"
                 endIcon={<ArrowForwardIcon />}
-                onClick={() =>
-                  document
-                    .querySelector("#contact")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
                 sx={(theme) => ({
-                  py: 1.8,
-                  px: 3.5,
+                  py: { xs: 1.75, md: 2 },
+                  px: { xs: 3, md: 3.5 },
+                  width: { xs: "100%", lg: "auto" },
+                  whiteSpace: "nowrap",
                   boxShadow: shadowPrimarySoft(theme),
                 })}
               >
                 {t.cta.btnQuote}
               </Button>
 
-              {/* Secondary CTA */}
               <Button
                 variant="outlined"
                 size="large"
@@ -157,8 +156,10 @@ export default function CTABannerSection() {
                 component="a"
                 href={`tel:${contactLinks.phoneTel}`}
                 sx={(theme) => ({
-                  py: 1.8,
-                  px: 3.5,
+                  py: { xs: 1.75, md: 2 },
+                  px: { xs: 3, md: 3.5 },
+                  width: { xs: "100%", lg: "auto" },
+                  whiteSpace: "nowrap",
                   borderColor: textPrimaryAlpha(theme, 0.35),
                   color: "common.white",
                   borderWidth: "1.5px",

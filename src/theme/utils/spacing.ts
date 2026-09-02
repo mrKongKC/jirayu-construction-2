@@ -1,5 +1,5 @@
 export const sectionSpacing = {
-  header: { xs: 7, md: 10 },
+  header: { xs: 5, sm: 6, md: 7 },
   large: { xs: 8, md: 12 },
 };
 

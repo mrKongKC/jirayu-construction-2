@@ -21,6 +21,14 @@ export function localePath(locale: Locale, path = ''): string {
   return normalized ? `/${locale}/${normalized}` : `/${locale}`;
 }
 
+export function stripLocalePrefix(pathname: string): string {
+  const parts = pathname.split('/').filter(Boolean);
+  if (parts[0] && isLocalePrefix(parts[0])) {
+    parts.shift();
+  }
+  return parts.length ? `/${parts.join('/')}` : '/';
+}
+
 export function isHomePathname(pathname: string): boolean {
   const segments = pathname.split('/').filter(Boolean);
   return segments.length === 1 && isLocalePrefix(segments[0]);

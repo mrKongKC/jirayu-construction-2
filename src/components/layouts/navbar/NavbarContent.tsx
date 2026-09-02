@@ -51,6 +51,11 @@ export default function NavbarContent() {
 
   const closeDrawer = () => handleClickDrawer(false);
 
+  const handleToggleLocale = () => {
+    closeDrawer();
+    toggleLocale();
+  };
+
   const navItems = [
     { label: t.nav.home, href: "#hero", show: config.showHero },
     { label: t.nav.services, href: "#services", show: config.showServices },
@@ -81,8 +86,10 @@ export default function NavbarContent() {
     <>
       <AppBar
         position="fixed"
+        color="inherit"
         elevation={0}
         sx={(theme) => ({
+          zIndex: theme.zIndex.appBar,
           background: scrolled ? theme.palette.custom.white : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "none",
           borderBottom: scrolled
@@ -110,7 +117,7 @@ export default function NavbarContent() {
             }}
           >
             <BrandMark
-              title={t.title}
+              title={t.common.brandShort}
               tagline={t.common.tagline}
               titleSx={(theme) => ({
                 color: scrolled
@@ -167,7 +174,7 @@ export default function NavbarContent() {
           <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
             {/* Language Toggle Button */}
             <Button
-              onClick={toggleLocale}
+              onClick={handleToggleLocale}
               size="small"
               variant="outlined"
               sx={(theme) => ({
@@ -232,7 +239,7 @@ export default function NavbarContent() {
         open={mobileOpen}
         onClose={() => handleClickDrawer(false)}
         ModalProps={{
-          disableScrollLock: false,
+          disableScrollLock: true,
         }}
         PaperProps={{
           sx: (theme) => ({
@@ -258,7 +265,7 @@ export default function NavbarContent() {
                 color: theme.palette.primary.main,
               })}
             >
-              {t.title}
+              {t.common.brandShort}
             </Typography>
             <IconButton onClick={() => handleClickDrawer(false)} size="small">
               <CloseIcon />
@@ -297,7 +304,7 @@ export default function NavbarContent() {
             <Button
               variant="outlined"
               fullWidth
-              onClick={toggleLocale}
+              onClick={handleToggleLocale}
               sx={(theme) => ({
                 borderColor: theme.palette.divider,
               })}

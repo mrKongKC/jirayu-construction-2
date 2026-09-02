@@ -33,6 +33,12 @@ export function AppActionProvider({ children }: { children: React.ReactNode }) {
   const [isClickedDrawer, setIsClickDrawer] = useState(false);
 
   useEffect(() => {
+    setIsClickDrawer(false);
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  }, [pathname]);
+
+  useEffect(() => {
     const root = document.documentElement;
 
     const handleScroll = () => {

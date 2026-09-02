@@ -46,6 +46,18 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   const locale = urlLocale ?? defaultLocale;
 
   useEffect(() => {
+    try {
+      const previous = sessionStorage.getItem("nav:path");
+      if (previous && previous !== pathname) {
+        sessionStorage.setItem("nav:prevPath", previous);
+      }
+      sessionStorage.setItem("nav:path", pathname);
+    } catch {
+      // sessionStorage can be unavailable
+    }
+  }, [pathname]);
+
+  useEffect(() => {
     if (urlLocale) {
       localStorage.setItem(LOCALE_STORAGE_KEY, urlLocale);
     }
@@ -55,13 +67,13 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   const setLocale = useCallback(
     (l: Locale) => {
       localStorage.setItem(LOCALE_STORAGE_KEY, l);
+      const hash = window.location.hash;
       const onLocaleRoute =
-        pathname.startsWith('/th') || pathname.startsWith('/en');
-      if (onLocaleRoute) {
-        router.push(switchLocalePath(pathname, l));
-      } else {
-        router.push(`/${l}`);
-      }
+        pathname.startsWith("/th") || pathname.startsWith("/en");
+      const nextPath = onLocaleRoute
+        ? switchLocalePath(pathname, l)
+        : `/${l}`;
+      router.replace(`${nextPath}${hash}`);
     },
     [pathname, router],
   );

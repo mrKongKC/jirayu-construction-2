@@ -27,7 +27,17 @@ export default function BrandMark({
   const dim = sizes[size];
 
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, ...sx }}>
+    <Box
+      sx={[
+        {
+          display: "flex",
+          alignItems: "center",
+          gap: 1.5,
+          minWidth: 0,
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
+    >
       <Box
         sx={(theme) => ({
           width: dim.mark,
@@ -46,27 +56,39 @@ export default function BrandMark({
       >
         J
       </Box>
-      <Box>
+      <Box sx={{ minWidth: 0 }}>
         <Typography
-          sx={{
-            fontWeight: 700,
-            fontSize: dim.title,
-            lineHeight: 1,
-            letterSpacing: size === "sm" ? "-0.01em" : undefined,
-            ...titleSx,
-          }}
+          sx={[
+            {
+              fontWeight: 700,
+              fontSize: dim.title,
+              lineHeight: 1.2,
+              letterSpacing: size === "sm" ? "-0.01em" : undefined,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            },
+            ...(titleSx ? (Array.isArray(titleSx) ? titleSx : [titleSx]) : []),
+          ]}
         >
           {title}
         </Typography>
         {tagline && (
           <Typography
-            sx={{
-              fontWeight: 400,
-              fontSize: dim.tagline,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              ...taglineSx,
-            }}
+            sx={[
+              {
+                fontWeight: 400,
+                fontSize: dim.tagline,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                whiteSpace: "nowrap",
+              },
+              ...(taglineSx
+                ? Array.isArray(taglineSx)
+                  ? taglineSx
+                  : [taglineSx]
+                : []),
+            ]}
           >
             {tagline}
           </Typography>

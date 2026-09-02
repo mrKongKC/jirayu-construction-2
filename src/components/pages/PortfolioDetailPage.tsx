@@ -64,7 +64,7 @@ function MetaCard({ label, value }: { label: string; value: string }) {
 export default function PortfolioDetailPage({ project }: Props) {
   const { t } = useI18n();
   const { toLocalePath } = useLocalePath();
-  const navigateBack = useNavigateBack();
+  const navigateBack = useNavigateBack("", "#portfolio");
   const d = t.portfolioDetail;
 
   const metaItems = [
